@@ -1,0 +1,12 @@
+{% comment %}
+  Scripts snippet - Carrega todos os JavaScript necessários
+{% endcomment %}
+
+<script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
+{%- if settings.enable_gtm -%}
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ settings.gtm_id }}"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+{%- endif -%}

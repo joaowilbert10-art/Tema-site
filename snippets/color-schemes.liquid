@@ -1,0 +1,29 @@
+{% comment %}
+  Color Schemes snippet - Define esquemas de cores
+{% endcomment %}
+
+<style>
+  .color-{{ settings.color_scheme }}-gradient {
+    background: {{ settings.gradient | default: settings.color_scheme.settings.background }};
+  }
+
+  .color-{{ settings.color_scheme }}-gradient,
+  .color-{{ settings.color_scheme }}-gradient:before {
+    background-attachment: fixed;
+  }
+
+  .color-{{ settings.color_scheme }}-gradient:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  .color-{{ settings.color_scheme }}-gradient .page-width {
+    position: relative;
+    z-index: 1;
+  }
+</style>

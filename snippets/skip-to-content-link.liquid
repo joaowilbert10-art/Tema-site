@@ -1,0 +1,26 @@
+{% comment %}
+  Skip to Content Link snippet - Link de acessibilidade
+{% endcomment %}
+
+<a class="skip-to-content-link visually-hidden" href="{{ href }}">
+  {{ text | t }}
+</a>
+
+<style>
+  .skip-to-content-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-cta-600);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+  }
+
+  .skip-to-content-link:focus {
+    top: 6px;
+  }
+</style>

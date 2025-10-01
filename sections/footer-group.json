@@ -1,0 +1,37 @@
+{
+  "name": "Footer Group",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Footer Group Settings"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "footer",
+      "name": "Footer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "footer_menu_1",
+          "label": "Menu 1",
+          "default": "footer"
+        },
+        {
+          "type": "link_list",
+          "id": "footer_menu_2",
+          "label": "Menu 2",
+          "default": "footer"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "footer"
+      }
+    ]
+  }
+}

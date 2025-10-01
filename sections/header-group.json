@@ -1,0 +1,58 @@
+{
+  "name": "Header Group",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Group Settings"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement-bar",
+      "name": "Announcement Bar",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "message",
+          "label": "Mensagem",
+          "default": "🚚 Envio grátis para Portugal e Espanha em pedidos superiores a €50"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Texto do Link",
+          "default": "Saber mais"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "name": "Header",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu de Navegação",
+          "default": "main-menu"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement-bar"
+      },
+      {
+        "type": "header"
+      }
+    ]
+  }
+}

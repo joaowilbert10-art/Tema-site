@@ -1,0 +1,128 @@
+{% comment %}
+  Main Page Section - Página de conteúdo
+{% endcomment %}
+
+<section id="MainPage-{{ section.id }}" class="main-page section-padding" data-section="{{ section.id }}">
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">{{ page.title }}</h1>
+    </div>
+    
+    <div class="page-content">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .main-page {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .page-title {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .page-content h1,
+  .page-content h2,
+  .page-content h3,
+  .page-content h4,
+  .page-content h5,
+  .page-content h6 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .page-content p {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .page-content ul,
+  .page-content ol {
+    margin-bottom: var(--spacing-lg);
+    padding-left: var(--spacing-xl);
+  }
+
+  .page-content li {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .page-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+  }
+
+  .page-content blockquote {
+    border-left: 4px solid var(--color-cta-600);
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    font-style: italic;
+    color: var(--color-base-800);
+  }
+
+  .page-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+  }
+
+  .page-content th,
+  .page-content td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-base-050);
+  }
+
+  .page-content th {
+    background-color: var(--color-base-050);
+    font-weight: 600;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Main Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
