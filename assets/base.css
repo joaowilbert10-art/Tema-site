@@ -1,7 +1,5 @@
-/* Base CSS com sistema de cores customizado e Tailwind CSS */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* Base CSS para Shopify Theme - Sistema de cores customizado */
+/* Removidos imports do Tailwind que não funcionam no Shopify */
 
 /* CSS Variables para o sistema de cores */
 :root {
@@ -397,6 +395,21 @@ a:focus {
 .bg-dark { background-color: var(--color-base-900); }
 .bg-light { background-color: var(--color-base-050); }
 .bg-warm { background-color: var(--color-warm-200); }
+
+/* Classes específicas do tema */
+.text-base-900 { color: var(--color-base-900); }
+.text-base-800 { color: var(--color-base-800); }
+.text-base-050 { color: var(--color-base-050); }
+.text-accent-700 { color: var(--color-accent-700); }
+.text-cta-600 { color: var(--color-cta-600); }
+.text-warm-200 { color: var(--color-warm-200); }
+
+.bg-base-900 { background-color: var(--color-base-900); }
+.bg-base-800 { background-color: var(--color-base-800); }
+.bg-base-050 { background-color: var(--color-base-050); }
+.bg-accent-700 { background-color: var(--color-accent-700); }
+.bg-cta-600 { background-color: var(--color-cta-600); }
+.bg-warm-200 { background-color: var(--color-warm-200); }
 
 /* Responsividade */
 @media (max-width: 768px) {
