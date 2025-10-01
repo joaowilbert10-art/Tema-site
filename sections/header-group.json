@@ -10,39 +10,12 @@
     {
       "type": "announcement-bar",
       "name": "Announcement Bar",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "message",
-          "label": "Mensagem",
-          "default": "🚚 Envio grátis para Portugal e Espanha em pedidos superiores a €50"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link (opcional)"
-        },
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Texto do Link",
-          "default": "Saber mais"
-        }
-      ]
+      "limit": 1
     },
     {
       "type": "header",
       "name": "Header",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Menu de Navegação",
-          "default": "main-menu"
-        }
-      ]
+      "limit": 1
     }
   ],
   "default": {

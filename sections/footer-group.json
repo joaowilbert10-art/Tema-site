@@ -10,21 +10,7 @@
     {
       "type": "footer",
       "name": "Footer",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "link_list",
-          "id": "footer_menu_1",
-          "label": "Menu 1",
-          "default": "footer"
-        },
-        {
-          "type": "link_list",
-          "id": "footer_menu_2",
-          "label": "Menu 2",
-          "default": "footer"
-        }
-      ]
+      "limit": 1
     }
   ],
   "default": {
