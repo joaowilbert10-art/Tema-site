@@ -1,0 +1,443 @@
+{% comment %}
+  FAQ Section - Seção de perguntas frequentes com accordion
+  Inclui: 6-10 perguntas comuns, accordion acessível
+{% endcomment %}
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="faq__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="faq__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="faq__content">
+      <div class="faq__accordion">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'faq_item' %}
+              <div class="faq__item" data-accordion {{ block.shopify_attributes }}>
+                <button 
+                  class="faq__question" 
+                  data-accordion-trigger
+                  aria-expanded="false"
+                  aria-controls="faq-answer-{{ forloop.index }}"
+                  id="faq-question-{{ forloop.index }}"
+                >
+                  <span class="faq__question-text">{{ block.settings.question }}</span>
+                  <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                
+                <div 
+                  class="faq__answer" 
+                  data-accordion-content
+                  id="faq-answer-{{ forloop.index }}"
+                  aria-labelledby="faq-question-{{ forloop.index }}"
+                  role="region"
+                >
+                  <div class="faq__answer-content">
+                    {{ block.settings.answer }}
+                  </div>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    {% if section.settings.cta_text != blank %}
+      <div class="faq__cta">
+        <p class="faq__cta-text">{{ section.settings.cta_text }}</p>
+        <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-lg">
+          {{ section.settings.cta_button_text | default: 'Falar com Suporte' }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(135deg, var(--color-base-050) 0%, var(--color-warm-200) 100%);
+  }
+
+  .faq__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .faq__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .faq__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-base-800);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .faq__content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-3xl) auto;
+  }
+
+  .faq__accordion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .faq__item {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .faq__item:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .faq__item.active {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .faq__question {
+    width: 100%;
+    padding: var(--spacing-xl);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    transition: all var(--transition-fast);
+    font-family: inherit;
+  }
+
+  .faq__question:hover {
+    background-color: var(--color-base-050);
+  }
+
+  .faq__question:focus {
+    outline: 2px solid var(--color-cta-600);
+    outline-offset: -2px;
+  }
+
+  .faq__question[aria-expanded="true"] {
+    background-color: var(--color-cta-100);
+    border-bottom: 1px solid var(--color-base-050);
+  }
+
+  .faq__question-text {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-base-900);
+    line-height: 1.4;
+  }
+
+  .faq__icon {
+    color: var(--color-cta-600);
+    transition: transform var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .faq__item.active .faq__icon {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+  }
+
+  .faq__answer-content {
+    padding: 0 var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+  }
+
+  .faq__answer-content p {
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .faq__answer-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq__answer-content ul,
+  .faq__answer-content ol {
+    margin: var(--spacing-md) 0;
+    padding-left: var(--spacing-lg);
+  }
+
+  .faq__answer-content li {
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .faq__answer-content strong {
+    color: var(--color-base-900);
+    font-weight: 600;
+  }
+
+  .faq__answer-content a {
+    color: var(--color-cta-600);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .faq__answer-content a:hover {
+    text-decoration: underline;
+  }
+
+  .faq__cta {
+    text-align: center;
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .faq__cta-text {
+    font-size: var(--text-lg);
+    color: var(--color-base-800);
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+
+  /* Animações de entrada */
+  .faq__item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .faq__item:nth-child(1) { animation-delay: 0.1s; }
+  .faq__item:nth-child(2) { animation-delay: 0.2s; }
+  .faq__item:nth-child(3) { animation-delay: 0.3s; }
+  .faq__item:nth-child(4) { animation-delay: 0.4s; }
+  .faq__item:nth-child(5) { animation-delay: 0.5s; }
+  .faq__item:nth-child(6) { animation-delay: 0.6s; }
+  .faq__item:nth-child(7) { animation-delay: 0.7s; }
+  .faq__item:nth-child(8) { animation-delay: 0.8s; }
+  .faq__item:nth-child(9) { animation-delay: 0.9s; }
+  .faq__item:nth-child(10) { animation-delay: 1.0s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .faq {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .faq__title {
+      font-size: var(--text-3xl);
+    }
+
+    .faq__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .faq__question {
+      padding: var(--spacing-lg);
+    }
+
+    .faq__question-text {
+      font-size: var(--text-base);
+    }
+
+    .faq__answer-content {
+      padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+    }
+
+    .faq__cta {
+      padding: var(--spacing-xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .faq__question {
+      padding: var(--spacing-md);
+    }
+
+    .faq__answer-content {
+      padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+    }
+
+    .faq__cta {
+      padding: var(--spacing-lg);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer para animações
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const faqItems = document.querySelectorAll('.faq__item');
+    faqItems.forEach(item => {
+      item.style.animationPlayState = 'paused';
+      observer.observe(item);
+    });
+
+    // Funcionalidade do accordion já está implementada no global.js
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "Perguntas Frequentes"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo da Seção",
+      "default": "Tire as suas dúvidas sobre o produto e o processo de compra"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do CTA",
+      "default": "Ainda tem dúvidas? Nossa equipa está aqui para ajudar."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "Texto do Botão CTA",
+      "default": "Falar com Suporte"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Pergunta FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pergunta",
+          "default": "O produto é seguro para pele sensível?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Resposta",
+          "default": "<p>Sim, o nosso produto foi desenvolvido especificamente para ser seguro em pele sensível. As lâminas cerâmicas são mais suaves que as metálicas tradicionais e o design ergonômico reduz o risco de irritações.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "O produto é seguro para pele sensível?",
+            "answer": "<p>Sim, o nosso produto foi desenvolvido especificamente para ser seguro em pele sensível. As lâminas cerâmicas são mais suaves que as metálicas tradicionais e o design ergonômico reduz o risco de irritações.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Posso usar no chuveiro?",
+            "answer": "<p>Sim! O produto é 100% à prova d'água (IPX7) e pode ser usado no chuveiro com total segurança. Isso facilita a limpeza e torna o processo mais conveniente.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quanto tempo dura a bateria?",
+            "answer": "<p>A bateria oferece até 90 minutos de uso contínuo, o que equivale a várias sessões de uso. O carregamento é feito via USB-C e demora aproximadamente 2 horas para carregar completamente.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Posso usar em todo o corpo?",
+            "answer": "<p>Embora o produto seja especificamente otimizado para cuidados íntimos, pode ser usado em outras partes do corpo. Recomendamos sempre seguir as instruções do manual para melhores resultados.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Como faço a limpeza do produto?",
+            "answer": "<p>A limpeza é simples: remova os pelos com a escova incluída, lave com água corrente e seque com um pano limpo. Para desinfecção, pode usar álcool isopropílico nas lâminas.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "O envio é discreto?",
+            "answer": "<p>Sim, todos os nossos envios são feitos em embalagem neutra, sem qualquer indicação do conteúdo. O seu pedido chegará de forma completamente discreta.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Qual é o prazo de entrega?",
+            "answer": "<p>Para Portugal e Espanha, o prazo de entrega é de 2-3 dias úteis. Para outros países da UE, o prazo é de 3-5 dias úteis. O envio é gratuito para pedidos superiores a €50.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Posso devolver se não ficar satisfeito?",
+            "answer": "<p>Sim, oferecemos 14 dias para devolução sem perguntas. Se não ficar satisfeito com o produto, pode devolvê-lo e receberá o reembolso total.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

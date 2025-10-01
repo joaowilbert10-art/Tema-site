@@ -1,0 +1,215 @@
+{% comment %}
+  Meta Tags and SEO
+  Dynamic meta tags, Open Graph, Twitter Cards, and structured data
+{% endcomment %}
+
+{%- assign page_title = page_title | default: shop.name -%}
+{%- assign page_description = page_description | default: settings.meta_description -%}
+{%- assign page_image = page_image | default: settings.og_image -%}
+
+{%- comment -%} Page Title {%- endcomment -%}
+<title>{{ page_title | escape }}</title>
+
+{%- comment -%} Meta Description {%- endcomment -%}
+{%- if page_description != blank -%}
+  <meta name="description" content="{{ page_description | escape }}">
+{%- endif -%}
+
+{%- comment -%} Canonical URL {%- endcomment -%}
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- comment -%} Open Graph Tags {%- endcomment -%}
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | escape }}">
+{%- if page_description != blank -%}
+  <meta property="og:description" content="{{ page_description | escape }}">
+{%- endif -%}
+<meta property="og:type" content="website">
+{%- if page_image != blank -%}
+  <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+{%- endif -%}
+
+{%- comment -%} Twitter Card Tags {%- endcomment -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | escape }}">
+{%- if page_description != blank -%}
+  <meta name="twitter:description" content="{{ page_description | escape }}">
+{%- endif -%}
+{%- if page_image != blank -%}
+  <meta name="twitter:image" content="{{ page_image | image_url: width: 1200 }}">
+{%- endif -%}
+
+{%- comment -%} Additional Meta Tags {%- endcomment -%}
+<meta name="robots" content="index, follow">
+<meta name="author" content="{{ shop.name | escape }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{%- comment -%} Theme Color {%- endcomment -%}
+<meta name="theme-color" content="{{ settings.color_cta_600 | default: '#009F91' }}">
+
+{%- comment -%} Structured Data - Organization {%- endcomment -%}
+{%- if settings.enable_structured_data -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name | escape }}",
+    "url": "{{ shop.url }}",
+    "logo": "{{ settings.logo | image_url: width: 200 }}",
+    "description": "{{ shop.description | default: settings.meta_description | escape }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ settings.contact_address | split: '\n' | first | escape }}",
+      "addressLocality": "{{ settings.contact_address | split: '\n' | last | split: ',' | first | strip | escape }}",
+      "addressCountry": "{{ settings.contact_address | split: '\n' | last | split: ',' | last | strip | escape }}"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "{{ settings.contact_phone | escape }}",
+      "contactType": "customer service",
+      "email": "{{ settings.contact_email | escape }}"
+    },
+    "sameAs": [
+      {%- if settings.social_facebook_link != blank -%}"{{ settings.social_facebook_link }}"{%- endif -%}
+      {%- if settings.social_instagram_link != blank -%},"{{ settings.social_instagram_link }}"{%- endif -%}
+      {%- if settings.social_youtube_link != blank -%},"{{ settings.social_youtube_link }}"{%- endif -%}
+      {%- if settings.social_tiktok_link != blank -%},"{{ settings.social_tiktok_link }}"{%- endif -%}
+    ]
+  }
+  </script>
+{%- endif -%}
+
+{%- comment -%} Product Structured Data {%- endcomment -%}
+{%- if template contains 'product' and product -%}
+  {%- if settings.enable_structured_data -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "{{ product.title | escape }}",
+      "description": "{{ product.description | strip_html | escape }}",
+      "image": [
+        {%- for image in product.images -%}
+          "{{ image | image_url: width: 800 }}"{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ],
+      "brand": {
+        "@type": "Brand",
+        "name": "{{ product.vendor | escape }}"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "{{ product.price | money_without_currency | remove: '€' | remove: ',' | strip }}",
+        "priceCurrency": "{{ cart.currency.iso_code }}",
+        "availability": "{%- if product.available -%}https://schema.org/InStock{%- else -%}https://schema.org/OutOfStock{%- endif -%}",
+        "url": "{{ shop.url }}{{ product.url }}",
+        "seller": {
+          "@type": "Organization",
+          "name": "{{ shop.name | escape }}"
+        }
+      }
+      {%- if product.variants.first.sku != blank -%}
+      ,"sku": "{{ product.variants.first.sku | escape }}"
+      {%- endif -%}
+      {%- if product.variants.first.barcode != blank -%}
+      ,"gtin": "{{ product.variants.first.barcode | escape }}"
+      {%- endif -%}
+    }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} Collection Structured Data {%- endcomment -%}
+{%- if template contains 'collection' and collection -%}
+  {%- if settings.enable_structured_data -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "{{ collection.title | escape }}",
+      "description": "{{ collection.description | strip_html | escape }}",
+      "url": "{{ shop.url }}{{ collection.url }}",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {%- for product in collection.products limit: 10 -%}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "item": {
+              "@type": "Product",
+              "name": "{{ product.title | escape }}",
+              "url": "{{ shop.url }}{{ product.url }}",
+              "image": "{{ product.featured_image | image_url: width: 400 }}"
+            }
+          }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        ]
+      }
+    }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} Breadcrumb Structured Data {%- endcomment -%}
+{%- if template contains 'product' or template contains 'collection' -%}
+  {%- if settings.enable_structured_data -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ 'general.breadcrumbs.home' | t }}",
+          "item": "{{ shop.url }}"
+        }
+        {%- if template contains 'collection' and collection -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ collection.title | escape }}",
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }
+        {%- endif -%}
+        {%- if template contains 'product' and product -%}
+        ,{
+          "@type": "ListItem",
+          "position": {%- if template contains 'collection' -%}3{%- else -%}2{%- endif -%},
+          "name": "{{ product.title | escape }}",
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+        {%- endif -%}
+      ]
+    }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} FAQ Structured Data {%- endcomment -%}
+{%- if template contains 'page' and page.handle == 'faq' -%}
+  {%- if settings.enable_structured_data -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- comment -%} This would be populated with actual FAQ content {%- endcomment -%}
+        {
+          "@type": "Question",
+          "name": "{{ 'general.faq.sample_question' | t }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ 'general.faq.sample_answer' | t }}"
+          }
+        }
+      ]
+    }
+    </script>
+  {%- endif -%}
+{%- endif -%}

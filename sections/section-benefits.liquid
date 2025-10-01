@@ -1,0 +1,436 @@
+{% comment %}
+  Benefits Section - Seção de benefícios em 3 colunas
+  Inclui: Ícones SVG, microcopy persuasiva, gatilhos de segurança e praticidade
+{% endcomment %}
+
+<section class="benefits" id="benefits">
+  <div class="container">
+    <div class="benefits__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="benefits__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="benefits__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="benefits__grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'benefit' %}
+            <div class="benefits__item" {{ block.shopify_attributes }}>
+              <div class="benefits__icon">
+                {% if block.settings.icon == 'anti-cuts' %}
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <path d="M20 25L25 20L30 25L35 20L40 25V35C40 40.5 35.5 45 30 45C24.5 45 20 40.5 20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25 30L28 33L35 26" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {% elsif block.settings.icon == 'waterproof' %}
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <path d="M20 25C20 20 25 15 30 15C35 15 40 20 40 25V35C40 40 35 45 30 45C25 45 20 40 20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25 25L30 30L35 25" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 25H45" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                {% elsif block.settings.icon == 'battery' %}
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <rect x="20" y="15" width="20" height="30" rx="3" stroke="var(--color-cta-600)" stroke-width="2"/>
+                    <rect x="22" y="17" width="16" height="26" rx="2" fill="var(--color-cta-600)" fill-opacity="0.2"/>
+                    <rect x="22" y="17" width="16" height="20" rx="2" fill="var(--color-cta-600)"/>
+                    <path d="M42 25V35" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                    <text x="30" y="35" text-anchor="middle" fill="white" font-size="8" font-weight="bold">90</text>
+                  </svg>
+                {% elsif block.settings.icon == 'ceramic' %}
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <rect x="15" y="20" width="30" height="20" rx="2" stroke="var(--color-cta-600)" stroke-width="2"/>
+                    <path d="M20 25H40M20 30H40M20 35H40" stroke="var(--color-cta-600)" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="30" cy="30" r="3" fill="var(--color-cta-600)"/>
+                  </svg>
+                {% elsif block.settings.icon == 'precision' %}
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <circle cx="30" cy="30" r="15" stroke="var(--color-cta-600)" stroke-width="2"/>
+                    <circle cx="30" cy="30" r="8" stroke="var(--color-cta-600)" stroke-width="2"/>
+                    <circle cx="30" cy="30" r="3" fill="var(--color-cta-600)"/>
+                    <path d="M30 10V15M30 45V50M10 30H15M45 30H50" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                {% elsif block.settings.icon == 'hygiene' %}
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <path d="M20 20H40V40H20V20Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25 25H35M25 30H35M25 35H35" stroke="var(--color-cta-600)" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M15 15L20 20M40 20L45 15M20 40L15 45M40 40L45 45" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                {% else %}
+                  <!-- Ícone padrão -->
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                    <path d="M20 25L30 20L40 25V35L30 40L20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M25 30L30 35L35 30" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {% endif %}
+              </div>
+
+              <div class="benefits__content">
+                {% if block.settings.title != blank %}
+                  <h3 class="benefits__item-title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p class="benefits__item-description">{{ block.settings.description }}</p>
+                {% endif %}
+                {% if block.settings.feature_list != blank %}
+                  <ul class="benefits__features">
+                    {% assign features = block.settings.feature_list | split: ',' %}
+                    {% for feature in features %}
+                      <li class="benefits__feature">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <path d="M20 6L9 17L4 12" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        {{ feature | strip }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.cta_text != blank %}
+      <div class="benefits__cta">
+        <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-lg">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .benefits {
+    padding: var(--spacing-4xl) 0;
+    background-color: white;
+  }
+
+  .benefits__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .benefits__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .benefits__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-base-800);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .benefits__item {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    background-color: var(--color-base-050);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefits__item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-cta-600), var(--color-accent-700));
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
+  }
+
+  .benefits__item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    background-color: white;
+  }
+
+  .benefits__item:hover::before {
+    transform: scaleX(1);
+  }
+
+  .benefits__icon {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+  }
+
+  .benefits__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .benefits__item-title {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .benefits__item-description {
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .benefits__features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: left;
+  }
+
+  .benefits__feature {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--text-sm);
+    color: var(--color-base-800);
+    font-weight: 500;
+  }
+
+  .benefits__feature svg {
+    flex-shrink: 0;
+  }
+
+  .benefits__cta {
+    text-align: center;
+  }
+
+  /* Animações de entrada */
+  .benefits__item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .benefits__item:nth-child(1) { animation-delay: 0.1s; }
+  .benefits__item:nth-child(2) { animation-delay: 0.2s; }
+  .benefits__item:nth-child(3) { animation-delay: 0.3s; }
+  .benefits__item:nth-child(4) { animation-delay: 0.4s; }
+  .benefits__item:nth-child(5) { animation-delay: 0.5s; }
+  .benefits__item:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .benefits {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .benefits__title {
+      font-size: var(--text-3xl);
+    }
+
+    .benefits__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .benefits__grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .benefits__item {
+      padding: var(--spacing-xl);
+    }
+
+    .benefits__item-title {
+      font-size: var(--text-xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .benefits__item {
+      padding: var(--spacing-lg);
+    }
+
+    .benefits__features {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer para animações
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const benefitItems = document.querySelectorAll('.benefits__item');
+    benefitItems.forEach(item => {
+      item.style.animationPlayState = 'paused';
+      observer.observe(item);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Benefits Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "Por que escolher o nosso produto?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo da Seção",
+      "default": "Tecnologia avançada e design pensado para o seu conforto e segurança."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefício",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícone",
+          "options": [
+            {
+              "value": "anti-cuts",
+              "label": "Anti-Cortes"
+            },
+            {
+              "value": "waterproof",
+              "label": "À Prova d'Água"
+            },
+            {
+              "value": "battery",
+              "label": "Bateria 90min"
+            },
+            {
+              "value": "ceramic",
+              "label": "Lâmina Cerâmica"
+            },
+            {
+              "value": "precision",
+              "label": "Precisão"
+            },
+            {
+              "value": "hygiene",
+              "label": "Higiene"
+            }
+          ],
+          "default": "anti-cuts"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título do Benefício",
+          "default": "Tecnologia Anti-Cortes"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrição",
+          "default": "Lâminas cerâmicas que cortam apenas os pelos, protegendo a sua pele de cortes e irritações."
+        },
+        {
+          "type": "text",
+          "id": "feature_list",
+          "label": "Lista de Características (separadas por vírgula)",
+          "default": "Lâminas cerâmicas, Proteção contra cortes, Design ergonômico"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Section",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "anti-cuts",
+            "title": "Tecnologia Anti-Cortes",
+            "description": "Lâminas cerâmicas que cortam apenas os pelos, protegendo a sua pele de cortes e irritações.",
+            "feature_list": "Lâminas cerâmicas, Proteção contra cortes, Design ergonômico"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "waterproof",
+            "title": "100% À Prova d'Água",
+            "description": "Use no chuveiro com total segurança. Design selado que resiste à água e facilita a limpeza.",
+            "feature_list": "IPX7 resistente à água, Fácil limpeza, Uso no chuveiro"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "battery",
+            "title": "Bateria de 90 Minutos",
+            "description": "Autonomia suficiente para múltiplas utilizações. Carregamento rápido via USB-C.",
+            "feature_list": "90 minutos de autonomia, Carregamento USB-C, Indicador de bateria"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

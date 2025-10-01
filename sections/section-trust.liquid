@@ -1,0 +1,564 @@
+{% comment %}
+  Trust Section - Seção de garantia e confiança
+  Inclui: Blocos de confiança, microcopy, selos de garantia
+{% endcomment %}
+
+<section class="trust" id="trust">
+  <div class="container">
+    <div class="trust__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="trust__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="trust__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="trust__grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'trust_item' %}
+            <div class="trust__item" {{ block.shopify_attributes }}>
+              <div class="trust__card">
+                <div class="trust__icon">
+                  {% if block.settings.icon == 'guarantee' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 25L25 20L30 25L35 20L40 25V35C40 40.5 35.5 45 30 45C24.5 45 20 40.5 20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 30L28 33L35 26" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'return' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 30L15 25L20 20M40 30L45 25L40 20" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M15 25H25C27.5 25 30 27.5 30 30C30 32.5 27.5 35 25 35H15" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M45 25H35C32.5 25 30 27.5 30 30C30 32.5 32.5 35 35 35H45" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'shipping' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M15 25H35L40 30V40H15V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M40 30H45L50 35V40H40V30Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="20" cy="45" r="3" stroke="var(--color-cta-600)" stroke-width="2"/>
+                      <circle cx="45" cy="45" r="3" stroke="var(--color-cta-600)" stroke-width="2"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'security' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M30 15L20 20V30C20 35 25 40 30 40C35 40 40 35 40 30V20L30 15Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 30L28 33L35 26" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'support' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M30 20C25 20 20 25 20 30C20 35 25 40 30 40C35 40 40 35 40 30C40 25 35 20 30 20Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M30 25V30L33 33" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'quality' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 25H40V35H20V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 25V20C25 17.5 27.5 15 30 15C32.5 15 35 17.5 35 20V25" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M30 35V40" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {% else %}
+                    <!-- Ícone padrão -->
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 25L30 20L40 25V35L30 40L20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 30L30 35L35 30" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </div>
+
+                <div class="trust__content">
+                  {% if block.settings.title != blank %}
+                    <h3 class="trust__item-title">{{ block.settings.title }}</h3>
+                  {% endif %}
+                  {% if block.settings.description != blank %}
+                    <p class="trust__item-description">{{ block.settings.description }}</p>
+                  {% endif %}
+                  {% if block.settings.details != blank %}
+                    <div class="trust__details">
+                      {{ block.settings.details }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <!-- Microcopy de Confiança -->
+    {% if section.settings.microcopy != blank %}
+      <div class="trust__microcopy">
+        <p class="trust__microcopy-text">{{ section.settings.microcopy }}</p>
+      </div>
+    {% endif %}
+
+    <!-- Selos de Confiança -->
+    {% if section.settings.show_badges %}
+      <div class="trust__badges">
+        <div class="trust__badges-grid">
+          {% if section.settings.badge_1_text != blank %}
+            <div class="trust__badge">
+              {% if section.settings.badge_1_icon != blank %}
+                <img 
+                  src="{{ section.settings.badge_1_icon | image_url: width: 40 }}"
+                  alt="{{ section.settings.badge_1_text }}"
+                  class="trust__badge-icon"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                >
+              {% endif %}
+              <span class="trust__badge-text">{{ section.settings.badge_1_text }}</span>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.badge_2_text != blank %}
+            <div class="trust__badge">
+              {% if section.settings.badge_2_icon != blank %}
+                <img 
+                  src="{{ section.settings.badge_2_icon | image_url: width: 40 }}"
+                  alt="{{ section.settings.badge_2_text }}"
+                  class="trust__badge-icon"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                >
+              {% endif %}
+              <span class="trust__badge-text">{{ section.settings.badge_2_text }}</span>
+            </div>
+          {% endif %}
+          
+          {% if section.settings.badge_3_text != blank %}
+            <div class="trust__badge">
+              {% if section.settings.badge_3_icon != blank %}
+                <img 
+                  src="{{ section.settings.badge_3_icon | image_url: width: 40 }}"
+                  alt="{{ section.settings.badge_3_text }}"
+                  class="trust__badge-icon"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                >
+              {% endif %}
+              <span class="trust__badge-text">{{ section.settings.badge_3_text }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .trust {
+    padding: var(--spacing-4xl) 0;
+    background-color: white;
+  }
+
+  .trust__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .trust__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .trust__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-base-800);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .trust__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .trust__item {
+    display: flex;
+  }
+
+  .trust__card {
+    background: var(--color-base-050);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    text-align: center;
+    width: 100%;
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+  }
+
+  .trust__card:hover {
+    background: white;
+    border-color: var(--color-cta-600);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .trust__icon {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+  }
+
+  .trust__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .trust__item-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .trust__item-description {
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .trust__details {
+    font-size: var(--text-sm);
+    color: var(--color-base-700);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .trust__microcopy {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .trust__microcopy-text {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-cta-600);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .trust__badges {
+    display: flex;
+    justify-content: center;
+  }
+
+  .trust__badges-grid {
+    display: flex;
+    gap: var(--spacing-2xl);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .trust__badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    min-width: 120px;
+  }
+
+  .trust__badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .trust__badge-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .trust__badge-text {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-base-800);
+    text-align: center;
+  }
+
+  /* Animações de entrada */
+  .trust__item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .trust__item:nth-child(1) { animation-delay: 0.1s; }
+  .trust__item:nth-child(2) { animation-delay: 0.2s; }
+  .trust__item:nth-child(3) { animation-delay: 0.3s; }
+  .trust__item:nth-child(4) { animation-delay: 0.4s; }
+  .trust__item:nth-child(5) { animation-delay: 0.5s; }
+  .trust__item:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .trust {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .trust__title {
+      font-size: var(--text-3xl);
+    }
+
+    .trust__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .trust__grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .trust__card {
+      padding: var(--spacing-xl);
+    }
+
+    .trust__item-title {
+      font-size: var(--text-lg);
+    }
+
+    .trust__badges-grid {
+      gap: var(--spacing-lg);
+    }
+
+    .trust__badge {
+      min-width: 100px;
+      padding: var(--spacing-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .trust__badges-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .trust__badge {
+      flex-direction: row;
+      min-width: auto;
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer para animações
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const trustItems = document.querySelectorAll('.trust__item');
+    trustItems.forEach(item => {
+      item.style.animationPlayState = 'paused';
+      observer.observe(item);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Trust Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "Zero risco, só resultados"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo da Seção",
+      "default": "A sua satisfação e segurança são a nossa prioridade"
+    },
+    {
+      "type": "text",
+      "id": "microcopy",
+      "label": "Microcopy de Confiança",
+      "default": "Mais de 10.000 homens já confiam no nosso produto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badges",
+      "label": "Mostrar Selos de Confiança",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Badge 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_1_icon",
+      "label": "Ícone do Badge 1"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Texto do Badge 1",
+      "default": "SSL Seguro"
+    },
+    {
+      "type": "header",
+      "content": "Badge 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_2_icon",
+      "label": "Ícone do Badge 2"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Texto do Badge 2",
+      "default": "GDPR Compliant"
+    },
+    {
+      "type": "header",
+      "content": "Badge 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_3_icon",
+      "label": "Ícone do Badge 3"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "Texto do Badge 3",
+      "default": "Envio Rápido"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Item de Confiança",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícone",
+          "options": [
+            {
+              "value": "guarantee",
+              "label": "Garantia"
+            },
+            {
+              "value": "return",
+              "label": "Devolução"
+            },
+            {
+              "value": "shipping",
+              "label": "Envio"
+            },
+            {
+              "value": "security",
+              "label": "Segurança"
+            },
+            {
+              "value": "support",
+              "label": "Suporte"
+            },
+            {
+              "value": "quality",
+              "label": "Qualidade"
+            }
+          ],
+          "default": "guarantee"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "2 Anos de Garantia"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrição",
+          "default": "Garantia total de 2 anos contra defeitos de fabrico"
+        },
+        {
+          "type": "richtext",
+          "id": "details",
+          "label": "Detalhes Adicionais"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Section",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "guarantee",
+            "title": "2 Anos de Garantia",
+            "description": "Garantia total de 2 anos contra defeitos de fabrico",
+            "details": "<p>Cobertura completa para sua tranquilidade</p>"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "return",
+            "title": "14 Dias para Devolver",
+            "description": "Devolução gratuita em 14 dias se não ficar satisfeito",
+            "details": "<p>Sem perguntas, sem complicações</p>"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Envio Discreto",
+            "description": "Embalagem neutra e entrega discreta em toda a UE",
+            "details": "<p>Ninguém saberá o que está dentro</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

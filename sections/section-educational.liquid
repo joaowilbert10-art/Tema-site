@@ -1,0 +1,597 @@
+{% comment %}
+  Educational Section - Seção educativa para quebra de objeções
+  Inclui: Comparativo "Errado vs Certo", argumentos de higiene, segurança, ergonomia
+{% endcomment %}
+
+<section class="educational" id="educational">
+  <div class="container">
+    <div class="educational__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="educational__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="educational__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Comparativo Errado vs Certo -->
+    {% if section.settings.show_comparison %}
+      <div class="educational__comparison">
+        <div class="educational__comparison-header">
+          <h3 class="educational__comparison-title">{{ section.settings.comparison_title | default: 'Errado vs Certo' }}</h3>
+        </div>
+        
+        <div class="educational__comparison-grid">
+          <!-- Lado Errado -->
+          <div class="educational__side educational__side--wrong">
+            <div class="educational__side-header">
+              <div class="educational__side-icon educational__side-icon--wrong">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="20" fill="#EF4444"/>
+                  <path d="M12 12L28 28M28 12L12 28" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h4 class="educational__side-title">{{ section.settings.wrong_title | default: 'Usar aparador de barba/cabelo' }}</h4>
+            </div>
+            
+            <div class="educational__side-content">
+              <ul class="educational__problems">
+                {% assign problems = section.settings.wrong_problems | split: ',' %}
+                {% for problem in problems %}
+                  <li class="educational__problem">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 18L18 6M6 6L18 18" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    {{ problem | strip }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <!-- VS -->
+          <div class="educational__vs">
+            <div class="educational__vs-content">
+              <span class="educational__vs-text">VS</span>
+            </div>
+          </div>
+
+          <!-- Lado Certo -->
+          <div class="educational__side educational__side--right">
+            <div class="educational__side-header">
+              <div class="educational__side-icon educational__side-icon--right">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="20" fill="#10B981"/>
+                  <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h4 class="educational__side-title">{{ section.settings.right_title | default: 'Usar aparador íntimo dedicado' }}</h4>
+            </div>
+            
+            <div class="educational__side-content">
+              <ul class="educational__benefits">
+                {% assign benefits = section.settings.right_benefits | split: ',' %}
+                {% for benefit in benefits %}
+                  <li class="educational__benefit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 6L9 17L4 12" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {{ benefit | strip }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Argumentos Educativos -->
+    <div class="educational__arguments">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'argument' %}
+            <div class="educational__argument" {{ block.shopify_attributes }}>
+              <div class="educational__argument-content">
+                <div class="educational__argument-icon">
+                  {% if block.settings.icon == 'hygiene' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 20H40V40H20V20Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 25H35M25 30H35M25 35H35" stroke="var(--color-cta-600)" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M15 15L20 20M40 20L45 15M20 40L15 45M40 40L45 45" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'safety' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 25L25 20L30 25L35 20L40 25V35C40 40.5 35.5 45 30 45C24.5 45 20 40.5 20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 30L28 33L35 26" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'ergonomics' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 25C20 20 25 15 30 15C35 15 40 20 40 25V35C40 40 35 45 30 45C25 45 20 40 20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 25H35M25 30H35M25 35H35" stroke="var(--color-cta-600)" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  {% elsif block.settings.icon == 'efficiency' %}
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <circle cx="30" cy="30" r="15" stroke="var(--color-cta-600)" stroke-width="2"/>
+                      <circle cx="30" cy="30" r="8" stroke="var(--color-cta-600)" stroke-width="2"/>
+                      <circle cx="30" cy="30" r="3" fill="var(--color-cta-600)"/>
+                      <path d="M30 10V15M30 45V50M10 30H15M45 30H50" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {% else %}
+                    <!-- Ícone padrão -->
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                      <circle cx="30" cy="30" r="30" fill="var(--color-cta-100)"/>
+                      <path d="M20 25L30 20L40 25V35L30 40L20 35V25Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25 30L30 35L35 30" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </div>
+
+                <div class="educational__argument-text">
+                  {% if block.settings.title != blank %}
+                    <h4 class="educational__argument-title">{{ block.settings.title }}</h4>
+                  {% endif %}
+                  {% if block.settings.description != blank %}
+                    <p class="educational__argument-description">{{ block.settings.description }}</p>
+                  {% endif %}
+                  {% if block.settings.details != blank %}
+                    <div class="educational__argument-details">
+                      {{ block.settings.details }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <!-- CTA Final -->
+    {% if section.settings.cta_text != blank %}
+      <div class="educational__cta">
+        <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-lg">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .educational {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(135deg, var(--color-base-050) 0%, white 100%);
+  }
+
+  .educational__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .educational__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .educational__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-base-800);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .educational__comparison {
+    margin-bottom: var(--spacing-4xl);
+  }
+
+  .educational__comparison-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .educational__comparison-title {
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .educational__comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  .educational__side {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-normal);
+  }
+
+  .educational__side:hover {
+    transform: translateY(-4px);
+  }
+
+  .educational__side--wrong {
+    border-top: 4px solid #EF4444;
+  }
+
+  .educational__side--right {
+    border-top: 4px solid #10B981;
+  }
+
+  .educational__side-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .educational__side-icon {
+    flex-shrink: 0;
+  }
+
+  .educational__side-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .educational__side-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .educational__problems,
+  .educational__benefits {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .educational__problem,
+  .educational__benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    font-size: var(--text-base);
+    line-height: 1.5;
+  }
+
+  .educational__problem {
+    color: var(--color-base-800);
+  }
+
+  .educational__benefit {
+    color: var(--color-base-900);
+    font-weight: 500;
+  }
+
+  .educational__vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .educational__vs-content {
+    background: var(--color-cta-600);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--text-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .educational__arguments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .educational__argument {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+  }
+
+  .educational__argument:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .educational__argument-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .educational__argument-icon {
+    display: flex;
+    justify-content: center;
+  }
+
+  .educational__argument-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .educational__argument-description {
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .educational__argument-details {
+    font-size: var(--text-sm);
+    color: var(--color-base-700);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .educational__cta {
+    text-align: center;
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .educational__comparison-grid {
+      gap: var(--spacing-xl);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .educational {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .educational__title {
+      font-size: var(--text-3xl);
+    }
+
+    .educational__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .educational__comparison-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .educational__vs {
+      order: -1;
+    }
+
+    .educational__vs-content {
+      width: 50px;
+      height: 50px;
+      font-size: var(--text-base);
+    }
+
+    .educational__arguments {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .educational__side {
+      padding: var(--spacing-xl);
+    }
+
+    .educational__argument {
+      padding: var(--spacing-xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .educational__side-header {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-sm);
+    }
+
+    .educational__side-title {
+      font-size: var(--text-lg);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animações de entrada
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.educational__side, .educational__argument');
+    elements.forEach(element => {
+      observer.observe(element);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Educational Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "Por que usar um aparador dedicado?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo da Seção",
+      "default": "Entenda a diferença entre usar ferramentas genéricas e um produto específico para cuidados íntimos."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comparison",
+      "label": "Mostrar Comparativo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "comparison_title",
+      "label": "Título do Comparativo",
+      "default": "Errado vs Certo"
+    },
+    {
+      "type": "text",
+      "id": "wrong_title",
+      "label": "Título do Lado Errado",
+      "default": "Usar aparador de barba/cabelo"
+    },
+    {
+      "type": "text",
+      "id": "wrong_problems",
+      "label": "Problemas (separados por vírgula)",
+      "default": "Contaminação cruzada, Risco de cortes, Design inadequado, Difícil limpeza"
+    },
+    {
+      "type": "text",
+      "id": "right_title",
+      "label": "Título do Lado Certo",
+      "default": "Usar aparador íntimo dedicado"
+    },
+    {
+      "type": "text",
+      "id": "right_benefits",
+      "label": "Benefícios (separados por vírgula)",
+      "default": "Higiene garantida, Segurança total, Design ergonômico, Fácil manutenção"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Quero o produto certo"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "argument",
+      "name": "Argumento Educativo",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícone",
+          "options": [
+            {
+              "value": "hygiene",
+              "label": "Higiene"
+            },
+            {
+              "value": "safety",
+              "label": "Segurança"
+            },
+            {
+              "value": "ergonomics",
+              "label": "Ergonomia"
+            },
+            {
+              "value": "efficiency",
+              "label": "Eficiência"
+            }
+          ],
+          "default": "hygiene"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título do Argumento",
+          "default": "Higiene e Prevenção"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrição",
+          "default": "Produtos dedicados evitam contaminação cruzada e garantem higiene total."
+        },
+        {
+          "type": "richtext",
+          "id": "details",
+          "label": "Detalhes Adicionais"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Educational Section",
+      "blocks": [
+        {
+          "type": "argument",
+          "settings": {
+            "icon": "hygiene",
+            "title": "Higiene e Prevenção",
+            "description": "Produtos dedicados evitam contaminação cruzada e garantem higiene total.",
+            "details": "<p>Estudos mostram que usar o mesmo aparador para diferentes partes do corpo pode causar infecções e irritações.</p>"
+          }
+        },
+        {
+          "type": "argument",
+          "settings": {
+            "icon": "safety",
+            "title": "Segurança Garantida",
+            "description": "Design específico reduz riscos de cortes e irritações na pele sensível.",
+            "details": "<p>Lâminas e proteções desenvolvidas especificamente para áreas sensíveis.</p>"
+          }
+        },
+        {
+          "type": "argument",
+          "settings": {
+            "icon": "ergonomics",
+            "title": "Ergonomia Perfeita",
+            "description": "Formato e tamanho otimizados para uso confortável e preciso.",
+            "details": "<p>Design que se adapta perfeitamente à anatomia masculina.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

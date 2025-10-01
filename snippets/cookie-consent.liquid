@@ -1,0 +1,85 @@
+{% comment %}
+  Cookie Consent Banner
+  GDPR compliant cookie consent with Google Tag Manager integration
+{% endcomment %}
+
+{%- if settings.gdpr_enabled -%}
+  <div class="cookie-consent-banner fixed bottom-0 left-0 right-0 bg-base-900 text-base-050 p-4 z-50 transform translate-y-full transition-transform duration-300" 
+       id="cookie-consent-banner" 
+       aria-hidden="true"
+       role="dialog"
+       aria-labelledby="cookie-consent-title"
+       aria-describedby="cookie-consent-description">
+    
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex-1">
+        <h3 id="cookie-consent-title" class="text-lg font-heading font-semibold mb-2">
+          {{ 'general.cookie_consent.title' | t }}
+        </h3>
+        <p id="cookie-consent-description" class="text-sm opacity-90 mb-4 md:mb-0">
+          {{ 'general.cookie_consent.description' | t }}
+          {% if settings.gdpr_privacy_policy_url != blank %}
+            <a href="{{ settings.gdpr_privacy_policy_url }}" 
+               class="underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-cta-600 focus:ring-offset-2 focus:ring-offset-base-900 rounded">
+              {{ 'general.cookie_consent.privacy_policy' | t }}
+            </a>
+          {% endif %}
+          {% if settings.gdpr_terms_url != blank %}
+            {{ 'general.cookie_consent.and' | t }}
+            <a href="{{ settings.gdpr_terms_url }}" 
+               class="underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-cta-600 focus:ring-offset-2 focus:ring-offset-base-900 rounded">
+              {{ 'general.cookie_consent.terms' | t }}
+            </a>
+          {% endif %}
+        </p>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button type="button" 
+                class="cookie-consent-decline px-4 py-2 text-sm border border-base-050 text-base-050 hover:bg-base-050 hover:text-base-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cta-600 focus:ring-offset-2 focus:ring-offset-base-900 rounded"
+                onclick="Theme.CookieConsent.decline()"
+                aria-label="{{ 'general.cookie_consent.decline' | t }}">
+          {{ 'general.cookie_consent.decline' | t }}
+        </button>
+        
+        <button type="button" 
+                class="cookie-consent-accept px-6 py-2 text-sm bg-cta-600 text-white hover:bg-cta-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cta-600 focus:ring-offset-2 focus:ring-offset-base-900 rounded"
+                onclick="Theme.CookieConsent.accept()"
+                aria-label="{{ 'general.cookie_consent.accept' | t }}">
+          {{ 'general.cookie_consent.accept' | t }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize cookie consent when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if consent has already been given
+      if (!Theme.CookieConsent.hasConsent()) {
+        // Show banner after a short delay
+        setTimeout(function() {
+          const banner = document.getElementById('cookie-consent-banner');
+          if (banner) {
+            banner.style.display = 'block';
+            banner.setAttribute('aria-hidden', 'false');
+            // Trigger animation
+            requestAnimationFrame(function() {
+              banner.classList.remove('translate-y-full');
+            });
+          }
+        }, 1000);
+      }
+    });
+
+    // Handle escape key to close banner
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const banner = document.getElementById('cookie-consent-banner');
+        if (banner && !banner.classList.contains('translate-y-full')) {
+          Theme.CookieConsent.decline();
+        }
+      }
+    });
+  </script>
+{%- endif -%}

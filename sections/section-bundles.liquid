@@ -1,0 +1,694 @@
+{% comment %}
+  Bundles Section - Seção de ofertas e kits
+  Inclui: 3 cards (Starter/Pro/Ultimate), preços, bullets, CTAs, upsell
+{% endcomment %}
+
+<section class="bundles" id="bundles">
+  <div class="container">
+    <div class="bundles__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="bundles__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="bundles__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="bundles__grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'bundle' %}
+            <div class="bundles__item {% if block.settings.featured %}bundles__item--featured{% endif %}" {{ block.shopify_attributes }}>
+              <div class="bundles__card">
+                <!-- Badge de Destaque -->
+                {% if block.settings.featured %}
+                  <div class="bundles__badge">
+                    <span>{{ block.settings.badge_text | default: 'Mais Popular' }}</span>
+                  </div>
+                {% endif %}
+
+                <!-- Header do Card -->
+                <div class="bundles__header">
+                  {% if block.settings.icon != blank %}
+                    <div class="bundles__icon">
+                      <img 
+                        src="{{ block.settings.icon | image_url: width: 80 }}"
+                        alt="{{ block.settings.title }}"
+                        width="80"
+                        height="80"
+                        loading="lazy"
+                      >
+                    </div>
+                  {% endif %}
+                  
+                  <h3 class="bundles__item-title">{{ block.settings.title }}</h3>
+                  
+                  {% if block.settings.subtitle != blank %}
+                    <p class="bundles__item-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                </div>
+
+                <!-- Preço -->
+                <div class="bundles__pricing">
+                  {% if block.settings.original_price != blank %}
+                    <div class="bundles__original-price">{{ block.settings.original_price }}</div>
+                  {% endif %}
+                  <div class="bundles__current-price">{{ block.settings.price }}</div>
+                  {% if block.settings.price_note != blank %}
+                    <div class="bundles__price-note">{{ block.settings.price_note }}</div>
+                  {% endif %}
+                </div>
+
+                <!-- Lista de Itens -->
+                {% if block.settings.items_list != blank %}
+                  <div class="bundles__items">
+                    <h4 class="bundles__items-title">{{ block.settings.items_title | default: 'O que está incluído:' }}</h4>
+                    <ul class="bundles__items-list">
+                      {% assign items = block.settings.items_list | split: ',' %}
+                      {% for item in items %}
+                        <li class="bundles__item-list">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 6L9 17L4 12" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          {{ item | strip }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                <!-- Benefícios -->
+                {% if block.settings.benefits_list != blank %}
+                  <div class="bundles__benefits">
+                    <ul class="bundles__benefits-list">
+                      {% assign benefits = block.settings.benefits_list | split: ',' %}
+                      {% for benefit in benefits %}
+                        <li class="bundles__benefit">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="var(--color-accent-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          {{ benefit | strip }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                <!-- CTA -->
+                <div class="bundles__cta">
+                  <a 
+                    href="{{ block.settings.cta_url }}" 
+                    class="btn {% if block.settings.featured %}btn-primary{% else %}btn-outline{% endif %} btn-lg bundles__cta-button"
+                  >
+                    {{ block.settings.cta_text | default: 'Quero este kit' }}
+                  </a>
+                  
+                  {% if block.settings.cta_note != blank %}
+                    <p class="bundles__cta-note">{{ block.settings.cta_note }}</p>
+                  {% endif %}
+                </div>
+
+                <!-- Upsell -->
+                {% if block.settings.upsell_text != blank %}
+                  <div class="bundles__upsell">
+                    <div class="bundles__upsell-content">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <span>{{ block.settings.upsell_text }}</span>
+                    </div>
+                    {% if block.settings.upsell_url != blank %}
+                      <a href="{{ block.settings.upsell_url }}" class="bundles__upsell-link">
+                        {{ block.settings.upsell_link_text | default: 'Adicionar' }}
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <!-- CTA Geral -->
+    {% if section.settings.cta_text != blank %}
+      <div class="bundles__footer-cta">
+        <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-lg">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+
+    <!-- Garantia -->
+    {% if section.settings.show_guarantee %}
+      <div class="bundles__guarantee">
+        <div class="bundles__guarantee-content">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>{{ section.settings.guarantee_text | default: 'Garantia de 14 dias para devolução' }}</span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .bundles {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(135deg, var(--color-base-050) 0%, var(--color-warm-200) 100%);
+  }
+
+  .bundles__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .bundles__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .bundles__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-base-800);
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bundles__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .bundles__item {
+    position: relative;
+  }
+
+  .bundles__item--featured {
+    transform: scale(1.05);
+    z-index: 2;
+  }
+
+  .bundles__card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all var(--transition-normal);
+  }
+
+  .bundles__item--featured .bundles__card {
+    border: 3px solid var(--color-cta-600);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .bundles__card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .bundles__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-cta-600);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-md);
+  }
+
+  .bundles__header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .bundles__icon {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+  }
+
+  .bundles__item-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .bundles__item-subtitle {
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    margin: 0;
+  }
+
+  .bundles__pricing {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .bundles__original-price {
+    font-size: var(--text-lg);
+    color: var(--color-base-600);
+    text-decoration: line-through;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .bundles__current-price {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-cta-600);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .bundles__price-note {
+    font-size: var(--text-sm);
+    color: var(--color-base-700);
+    font-style: italic;
+  }
+
+  .bundles__items {
+    margin-bottom: var(--spacing-lg);
+    flex: 1;
+  }
+
+  .bundles__items-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .bundles__items-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .bundles__item-list {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    font-size: var(--text-base);
+    color: var(--color-base-800);
+    line-height: 1.5;
+  }
+
+  .bundles__item-list svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .bundles__benefits {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .bundles__benefits-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .bundles__benefit {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--text-sm);
+    color: var(--color-base-700);
+    font-weight: 500;
+  }
+
+  .bundles__benefit svg {
+    flex-shrink: 0;
+  }
+
+  .bundles__cta {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .bundles__cta-button {
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .bundles__cta-note {
+    font-size: var(--text-xs);
+    color: var(--color-base-600);
+    margin: 0;
+  }
+
+  .bundles__upsell {
+    border-top: 1px solid var(--color-base-050);
+    padding-top: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+  }
+
+  .bundles__upsell-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--text-sm);
+    color: var(--color-base-700);
+    flex: 1;
+  }
+
+  .bundles__upsell-link {
+    font-size: var(--text-sm);
+    color: var(--color-cta-600);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+  }
+
+  .bundles__upsell-link:hover {
+    color: var(--color-cta-700);
+  }
+
+  .bundles__footer-cta {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .bundles__guarantee {
+    text-align: center;
+  }
+
+  .bundles__guarantee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--text-sm);
+    color: var(--color-base-800);
+    font-weight: 500;
+  }
+
+  .bundles__guarantee-content svg {
+    color: var(--color-cta-600);
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .bundles__item--featured {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bundles {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .bundles__title {
+      font-size: var(--text-3xl);
+    }
+
+    .bundles__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .bundles__grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .bundles__card {
+      padding: var(--spacing-xl);
+    }
+
+    .bundles__item-title {
+      font-size: var(--text-xl);
+    }
+
+    .bundles__current-price {
+      font-size: var(--text-2xl);
+    }
+
+    .bundles__upsell {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bundles__card {
+      padding: var(--spacing-lg);
+    }
+
+    .bundles__current-price {
+      font-size: var(--text-xl);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animações de entrada
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+        }
+      });
+    }, observerOptions);
+
+    const bundleItems = document.querySelectorAll('.bundles__item');
+    bundleItems.forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.1}s`;
+      observer.observe(item);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Bundles Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "Escolha o seu kit perfeito"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo da Seção",
+      "default": "Pacotes completos com tudo que você precisa para começar"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA Geral"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA Geral"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guarantee",
+      "label": "Mostrar Garantia",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Texto da Garantia",
+      "default": "Garantia de 14 dias para devolução"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Kit/Bundle",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Kit em Destaque",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Texto do Badge",
+          "default": "Mais Popular"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Ícone do Kit"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome do Kit",
+          "default": "Kit Starter"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtítulo do Kit",
+          "default": "Perfeito para começar"
+        },
+        {
+          "type": "text",
+          "id": "original_price",
+          "label": "Preço Original (riscado)"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Preço Atual",
+          "default": "€49,90"
+        },
+        {
+          "type": "text",
+          "id": "price_note",
+          "label": "Nota do Preço",
+          "default": "ou 3x de €16,63"
+        },
+        {
+          "type": "text",
+          "id": "items_title",
+          "label": "Título da Lista de Itens",
+          "default": "O que está incluído:"
+        },
+        {
+          "type": "text",
+          "id": "items_list",
+          "label": "Lista de Itens (separados por vírgula)",
+          "default": "1x Aparador principal, 1x Lâmina extra, 1x Manual de instruções"
+        },
+        {
+          "type": "text",
+          "id": "benefits_list",
+          "label": "Lista de Benefícios (separados por vírgula)",
+          "default": "Envio grátis, Garantia 2 anos, Suporte 24/7"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Texto do Botão CTA",
+          "default": "Quero este kit"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "URL do Botão CTA"
+        },
+        {
+          "type": "text",
+          "id": "cta_note",
+          "label": "Nota do CTA",
+          "default": "Entrega em 2-3 dias úteis"
+        },
+        {
+          "type": "text",
+          "id": "upsell_text",
+          "label": "Texto do Upsell"
+        },
+        {
+          "type": "text",
+          "id": "upsell_link_text",
+          "label": "Texto do Link do Upsell",
+          "default": "Adicionar"
+        },
+        {
+          "type": "url",
+          "id": "upsell_url",
+          "label": "URL do Upsell"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundles Section",
+      "blocks": [
+        {
+          "type": "bundle",
+          "settings": {
+            "title": "Kit Starter",
+            "subtitle": "Perfeito para começar",
+            "price": "€49,90",
+            "price_note": "ou 3x de €16,63",
+            "items_list": "1x Aparador principal, 1x Lâmina extra, 1x Manual de instruções",
+            "benefits_list": "Envio grátis, Garantia 2 anos, Suporte 24/7",
+            "cta_text": "Quero este kit",
+            "cta_note": "Entrega em 2-3 dias úteis"
+          }
+        },
+        {
+          "type": "bundle",
+          "settings": {
+            "featured": true,
+            "title": "Kit Pro",
+            "subtitle": "O mais popular",
+            "original_price": "€89,90",
+            "price": "€69,90",
+            "price_note": "ou 3x de €23,30",
+            "items_list": "1x Aparador principal, 2x Lâminas extras, 1x Loção pós-depilação, 1x Manual de instruções",
+            "benefits_list": "Envio grátis, Garantia 2 anos, Suporte 24/7, Loção exclusiva",
+            "cta_text": "Quero este kit",
+            "cta_note": "Entrega em 2-3 dias úteis",
+            "upsell_text": "+ Loção pós-depilação (€15)",
+            "upsell_link_text": "Adicionar"
+          }
+        },
+        {
+          "type": "bundle",
+          "settings": {
+            "title": "Kit Ultimate",
+            "subtitle": "Tudo incluído",
+            "original_price": "€129,90",
+            "price": "€99,90",
+            "price_note": "ou 3x de €33,30",
+            "items_list": "1x Aparador principal, 3x Lâminas extras, 1x Loção pós-depilação, 1x Case de viagem, 1x Manual de instruções",
+            "benefits_list": "Envio grátis, Garantia 2 anos, Suporte 24/7, Loção exclusiva, Case premium",
+            "cta_text": "Quero este kit",
+            "cta_note": "Entrega em 2-3 dias úteis"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,295 @@
+{
+  "sections": {
+    "hero": {
+      "type": "section-hero",
+      "settings": {
+        "headline": "O cuidado que começa abaixo da cintura",
+        "subheadline": "Seguro, potente e à prova d'água. A experiência de depilação íntima masculina que você sempre quis, sem complicações.",
+        "cta_text": "Quero o meu agora",
+        "cta_url": "#bundles",
+        "cta_secondary_text": "Ver demonstração",
+        "cta_secondary_url": "#video-demo",
+        "badge_1_text": "2 anos de garantia",
+        "badge_2_text": "14 dias para devolver",
+        "badge_3_text": "Envio discreto",
+        "benefit_1": "2 anos de garantia",
+        "benefit_2": "14 dias para devolver",
+        "benefit_3": "Envio discreto",
+        "image_badge_1_text": "Novo",
+        "image_badge_2_text": "Mais Vendido"
+      }
+    },
+    "benefits": {
+      "type": "section-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "anti-cuts",
+            "title": "Tecnologia Anti-Cortes",
+            "description": "Lâminas cerâmicas que cortam apenas os pelos, protegendo a sua pele de cortes e irritações.",
+            "feature_list": "Lâminas cerâmicas, Proteção contra cortes, Design ergonômico"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "waterproof",
+            "title": "100% À Prova d'Água",
+            "description": "Use no chuveiro com total segurança. Design selado que resiste à água e facilita a limpeza.",
+            "feature_list": "IPX7 resistente à água, Fácil limpeza, Uso no chuveiro"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "battery",
+            "title": "Bateria de 90 Minutos",
+            "description": "Autonomia suficiente para múltiplas utilizações. Carregamento rápido via USB-C.",
+            "feature_list": "90 minutos de autonomia, Carregamento USB-C, Indicador de bateria"
+          }
+        }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3"],
+      "settings": {
+        "heading": "Por que escolher o nosso produto?",
+        "subheading": "Tecnologia avançada e design pensado para o seu conforto e segurança"
+      }
+    },
+    "video_demo": {
+      "type": "section-video",
+      "settings": {
+        "heading": "Veja a diferença na prática",
+        "subheading": "Na prática, a diferença é brutal",
+        "description": "<p>Descubra como o nosso produto revoluciona a sua rotina de cuidados pessoais. Simple, seguro e eficaz.</p>",
+        "show_benefits": true,
+        "benefit_1": "Resultado imediato",
+        "benefit_2": "Fácil de usar",
+        "benefit_3": "Seguro e confiável",
+        "video_badge": "Demo",
+        "video_duration": "2:30",
+        "video_info": "Demonstração do produto",
+        "cta_text": "Quero experimentar",
+        "cta_url": "#bundles"
+      }
+    },
+    "reviews": {
+      "type": "section-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Produto excelente! Muito fácil de usar e resultado perfeito. Recomendo!",
+            "author_name": "João Silva",
+            "author_location": "Lisboa, Portugal",
+            "verified": true,
+            "review_date": "Há 2 semanas"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Finalmente um produto que funciona! Seguro, eficaz e discreto. Vale cada cêntimo.",
+            "author_name": "Miguel Santos",
+            "author_location": "Porto, Portugal",
+            "verified": true,
+            "review_date": "Há 1 mês"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "review_text": "Muito bom produto. A bateria dura bastante e o resultado é satisfatório.",
+            "author_name": "Carlos Oliveira",
+            "author_location": "Madrid, Espanha",
+            "verified": true,
+            "review_date": "Há 3 semanas"
+          }
+        }
+      },
+      "block_order": ["review_1", "review_2", "review_3"],
+      "settings": {
+        "heading": "O que os nossos clientes dizem",
+        "subheading": "Mais de 10.000 homens já confiam no nosso produto",
+        "show_average_rating": true,
+        "average_rating": 4.8,
+        "total_reviews": "1,247",
+        "cta_text": "Ver todos os reviews",
+        "cta_url": "#reviews"
+      }
+    },
+    "bundles": {
+      "type": "section-bundles",
+      "blocks": {
+        "bundle_1": {
+          "type": "bundle",
+          "settings": {
+            "title": "Kit Starter",
+            "subtitle": "Perfeito para começar",
+            "price": "€49,90",
+            "price_note": "ou 3x de €16,63",
+            "items_title": "O que está incluído:",
+            "items_list": "1x Aparador principal, 1x Lâmina extra, 1x Manual de instruções",
+            "benefits_list": "Envio grátis, Garantia 2 anos, Suporte 24/7",
+            "cta_text": "Quero este kit",
+            "cta_url": "/cart/add?id=123456789",
+            "cta_note": "Entrega em 2-3 dias úteis"
+          }
+        },
+        "bundle_2": {
+          "type": "bundle",
+          "settings": {
+            "featured": true,
+            "badge_text": "Mais Popular",
+            "title": "Kit Pro",
+            "subtitle": "O mais popular",
+            "original_price": "€89,90",
+            "price": "€69,90",
+            "price_note": "ou 3x de €23,30",
+            "items_title": "O que está incluído:",
+            "items_list": "1x Aparador principal, 2x Lâminas extras, 1x Loção pós-depilação, 1x Manual de instruções",
+            "benefits_list": "Envio grátis, Garantia 2 anos, Suporte 24/7, Loção exclusiva",
+            "cta_text": "Quero este kit",
+            "cta_url": "/cart/add?id=123456790",
+            "cta_note": "Entrega em 2-3 dias úteis",
+            "upsell_text": "+ Loção pós-depilação (€15)",
+            "upsell_link_text": "Adicionar",
+            "upsell_url": "/cart/add?id=123456791"
+          }
+        },
+        "bundle_3": {
+          "type": "bundle",
+          "settings": {
+            "title": "Kit Ultimate",
+            "subtitle": "Tudo incluído",
+            "original_price": "€129,90",
+            "price": "€99,90",
+            "price_note": "ou 3x de €33,30",
+            "items_title": "O que está incluído:",
+            "items_list": "1x Aparador principal, 3x Lâminas extras, 1x Loção pós-depilação, 1x Case de viagem, 1x Manual de instruções",
+            "benefits_list": "Envio grátis, Garantia 2 anos, Suporte 24/7, Loção exclusiva, Case premium",
+            "cta_text": "Quero este kit",
+            "cta_url": "/cart/add?id=123456792",
+            "cta_note": "Entrega em 2-3 dias úteis"
+          }
+        }
+      },
+      "block_order": ["bundle_1", "bundle_2", "bundle_3"],
+      "settings": {
+        "heading": "Escolha o seu kit perfeito",
+        "subheading": "Pacotes completos com tudo que você precisa para começar",
+        "show_guarantee": true,
+        "guarantee_text": "Garantia de 14 dias para devolução"
+      }
+    },
+    "trust": {
+      "type": "section-trust",
+      "blocks": {
+        "trust_1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "guarantee",
+            "title": "2 Anos de Garantia",
+            "description": "Garantia total de 2 anos contra defeitos de fabrico",
+            "details": "<p>Cobertura completa para sua tranquilidade</p>"
+          }
+        },
+        "trust_2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "return",
+            "title": "14 Dias para Devolver",
+            "description": "Devolução gratuita em 14 dias se não ficar satisfeito",
+            "details": "<p>Sem perguntas, sem complicações</p>"
+          }
+        },
+        "trust_3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Envio Discreto",
+            "description": "Embalagem neutra e entrega discreta em toda a UE",
+            "details": "<p>Ninguém saberá o que está dentro</p>"
+          }
+        }
+      },
+      "block_order": ["trust_1", "trust_2", "trust_3"],
+      "settings": {
+        "heading": "Zero risco, só resultados",
+        "subheading": "A sua satisfação e segurança são a nossa prioridade",
+        "microcopy": "Mais de 10.000 homens já confiam no nosso produto",
+        "show_badges": true,
+        "badge_1_text": "SSL Seguro",
+        "badge_2_text": "GDPR Compliant",
+        "badge_3_text": "Envio Rápido"
+      }
+    },
+    "faq": {
+      "type": "section-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "O produto é seguro para pele sensível?",
+            "answer": "<p>Sim, o nosso produto foi desenvolvido especificamente para ser seguro em pele sensível. As lâminas cerâmicas são mais suaves que as metálicas tradicionais e o design ergonômico reduz o risco de irritações.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Posso usar no chuveiro?",
+            "answer": "<p>Sim! O produto é 100% à prova d'água (IPX7) e pode ser usado no chuveiro com total segurança. Isso facilita a limpeza e torna o processo mais conveniente.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quanto tempo dura a bateria?",
+            "answer": "<p>A bateria oferece até 90 minutos de uso contínuo, o que equivale a várias sessões de uso. O carregamento é feito via USB-C e demora aproximadamente 2 horas para carregar completamente.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Posso usar em todo o corpo?",
+            "answer": "<p>Embora o produto seja especificamente otimizado para cuidados íntimos, pode ser usado em outras partes do corpo. Recomendamos sempre seguir as instruções do manual para melhores resultados.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Como faço a limpeza do produto?",
+            "answer": "<p>A limpeza é simples: remova os pelos com a escova incluída, lave com água corrente e seque com um pano limpo. Para desinfecção, pode usar álcool isopropílico nas lâminas.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "O envio é discreto?",
+            "answer": "<p>Sim, todos os nossos envios são feitos em embalagem neutra, sem qualquer indicação do conteúdo. O seu pedido chegará de forma completamente discreta.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6"],
+      "settings": {
+        "heading": "Perguntas Frequentes",
+        "subheading": "Tire as suas dúvidas sobre o produto e o processo de compra",
+        "cta_text": "Ainda tem dúvidas? Nossa equipa está aqui para ajudar.",
+        "cta_button_text": "Falar com Suporte",
+        "cta_url": "/pages/contact"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "benefits",
+    "video_demo",
+    "reviews",
+    "bundles",
+    "trust",
+    "faq"
+  ]
+}

@@ -1,0 +1,520 @@
+{% comment %}
+  Video Demo Section - Seção de vídeo demonstrativo
+  Inclui: Player leve, lazy load, storytelling
+{% endcomment %}
+
+<section class="video-demo" id="video-demo">
+  <div class="container">
+    <div class="video-demo__content">
+      <!-- Conteúdo de Texto -->
+      <div class="video-demo__text">
+        {% if section.settings.heading != blank %}
+          <h2 class="video-demo__title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        
+        {% if section.settings.subheading != blank %}
+          <p class="video-demo__subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="video-demo__description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        <!-- Benefícios do Vídeo -->
+        {% if section.settings.show_benefits %}
+          <div class="video-demo__benefits">
+            {% if section.settings.benefit_1 != blank %}
+              <div class="video-demo__benefit">
+                <svg class="video-demo__benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ section.settings.benefit_1 }}</span>
+              </div>
+            {% endif %}
+            {% if section.settings.benefit_2 != blank %}
+              <div class="video-demo__benefit">
+                <svg class="video-demo__benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ section.settings.benefit_2 }}</span>
+              </div>
+            {% endif %}
+            {% if section.settings.benefit_3 != blank %}
+              <div class="video-demo__benefit">
+                <svg class="video-demo__benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ section.settings.benefit_3 }}</span>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <!-- CTA -->
+        {% if section.settings.cta_text != blank %}
+          <div class="video-demo__cta">
+            <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-lg">
+              {{ section.settings.cta_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Player de Vídeo -->
+      <div class="video-demo__player">
+        <div class="video-demo__video-container">
+          {% if section.settings.video_url != blank %}
+            <video 
+              class="video-demo__video"
+              {% if section.settings.video_poster != blank %}poster="{{ section.settings.video_poster | image_url: width: 800 }}"{% endif %}
+              preload="metadata"
+              playsinline
+              controls
+              data-video-demo
+            >
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+              <source src="{{ section.settings.video_webm_url }}" type="video/webm">
+              Seu navegador não suporta vídeos HTML5.
+            </video>
+          {% else %}
+            <!-- Placeholder do vídeo -->
+            <div class="video-demo__placeholder">
+              <div class="video-demo__placeholder-content">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="40" fill="var(--color-cta-600)"/>
+                  <path d="M30 25L55 40L30 55V25Z" fill="white"/>
+                </svg>
+                <h3>Vídeo Demonstrativo</h3>
+                <p>Veja o produto em ação</p>
+              </div>
+            </div>
+          {% endif %}
+
+          <!-- Overlay de Play (se não tiver controles) -->
+          {% unless section.settings.video_show_controls %}
+            <div class="video-demo__play-overlay" data-play-overlay>
+              <button class="video-demo__play-button" aria-label="Reproduzir vídeo">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="40" fill="rgba(0, 0, 0, 0.7)"/>
+                  <path d="M30 25L55 40L30 55V25Z" fill="white"/>
+                </svg>
+              </button>
+            </div>
+          {% endunless %}
+
+          <!-- Badge do Vídeo -->
+          {% if section.settings.video_badge != blank %}
+            <div class="video-demo__badge">
+              <span>{{ section.settings.video_badge }}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Informações do Vídeo -->
+        {% if section.settings.video_duration != blank or section.settings.video_info != blank %}
+          <div class="video-demo__info">
+            {% if section.settings.video_duration != blank %}
+              <span class="video-demo__duration">{{ section.settings.video_duration }}</span>
+            {% endif %}
+            {% if section.settings.video_info != blank %}
+              <span class="video-demo__info-text">{{ section.settings.video_info }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-demo {
+    padding: var(--spacing-4xl) 0;
+    background-color: white;
+  }
+
+  .video-demo__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4xl);
+    align-items: center;
+  }
+
+  .video-demo__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .video-demo__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .video-demo__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-cta-600);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .video-demo__description {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--color-base-800);
+  }
+
+  .video-demo__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .video-demo__benefit {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-base-800);
+    font-weight: 500;
+  }
+
+  .video-demo__benefit-icon {
+    color: var(--color-cta-600);
+    flex-shrink: 0;
+  }
+
+  .video-demo__cta {
+    margin-top: var(--spacing-md);
+  }
+
+  .video-demo__player {
+    position: relative;
+  }
+
+  .video-demo__video-container {
+    position: relative;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    background-color: var(--color-base-900);
+  }
+
+  .video-demo__video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .video-demo__placeholder {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--color-base-800), var(--color-base-900));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .video-demo__placeholder-content {
+    text-align: center;
+    color: white;
+  }
+
+  .video-demo__placeholder-content h3 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  }
+
+  .video-demo__placeholder-content p {
+    font-size: var(--text-lg);
+    color: var(--color-base-050);
+    margin: 0;
+  }
+
+  .video-demo__play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-normal);
+  }
+
+  .video-demo__play-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .video-demo__play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+  }
+
+  .video-demo__play-button:hover {
+    transform: scale(1.1);
+  }
+
+  .video-demo__badge {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: var(--color-cta-600);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .video-demo__info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    color: var(--color-base-800);
+    font-size: var(--text-sm);
+  }
+
+  .video-demo__duration {
+    background: var(--color-base-050);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+  }
+
+  .video-demo__info-text {
+    font-style: italic;
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .video-demo__content {
+      gap: var(--spacing-3xl);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .video-demo {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .video-demo__content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2xl);
+      text-align: center;
+    }
+
+    .video-demo__title {
+      font-size: var(--text-3xl);
+    }
+
+    .video-demo__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .video-demo__description {
+      font-size: var(--text-base);
+    }
+
+    .video-demo__benefits {
+      align-items: center;
+    }
+
+    .video-demo__benefit {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .video-demo__placeholder {
+      min-height: 250px;
+    }
+
+    .video-demo__play-button svg {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('[data-video-demo]');
+    const playOverlay = document.querySelector('[data-play-overlay]');
+    const playButton = document.querySelector('.video-demo__play-button');
+    
+    if (video && playOverlay && playButton) {
+      // Reproduzir vídeo ao clicar no botão
+      playButton.addEventListener('click', function() {
+        video.play();
+        playOverlay.classList.add('hidden');
+      });
+
+      // Mostrar overlay quando o vídeo pausar
+      video.addEventListener('pause', function() {
+        if (!video.ended) {
+          playOverlay.classList.remove('hidden');
+        }
+      });
+
+      // Esconder overlay quando o vídeo começar a reproduzir
+      video.addEventListener('play', function() {
+        playOverlay.classList.add('hidden');
+      });
+
+      // Mostrar overlay quando o vídeo terminar
+      video.addEventListener('ended', function() {
+        playOverlay.classList.remove('hidden');
+      });
+    }
+
+    // Lazy loading do vídeo
+    const videoContainer = document.querySelector('.video-demo__video-container');
+    if (videoContainer && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && video) {
+            video.load();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      observer.observe(videoContainer);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Demo Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo de Texto"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "Veja a diferença na prática"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Na prática, a diferença é brutal"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descrição",
+      "default": "<p>Descubra como o nosso produto revoluciona a sua rotina de cuidados pessoais. Simples, seguro e eficaz.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Benefícios"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Mostrar Benefícios",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefício 1",
+      "default": "Resultado imediato"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefício 2",
+      "default": "Fácil de usar"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefício 3",
+      "default": "Seguro e confiável"
+    },
+    {
+      "type": "header",
+      "content": "Vídeo"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "URL do Vídeo (MP4)"
+    },
+    {
+      "type": "url",
+      "id": "video_webm_url",
+      "label": "URL do Vídeo (WebM) - Opcional"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Imagem do Poster"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_show_controls",
+      "label": "Mostrar Controles do Vídeo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "video_badge",
+      "label": "Badge do Vídeo",
+      "default": "Demo"
+    },
+    {
+      "type": "text",
+      "id": "video_duration",
+      "label": "Duração do Vídeo",
+      "default": "2:30"
+    },
+    {
+      "type": "text",
+      "id": "video_info",
+      "label": "Informação do Vídeo",
+      "default": "Demonstração do produto"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Quero experimentar"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Demo Section"
+    }
+  ]
+}
+{% endschema %}

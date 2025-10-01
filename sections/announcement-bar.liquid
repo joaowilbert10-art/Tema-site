@@ -1,0 +1,121 @@
+{% comment %}
+  Announcement Bar Section - Barra de anúncios no topo
+{% endcomment %}
+
+{%- if section.settings.message != blank -%}
+  <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
+    <div class="announcement-bar__wrapper">
+      <div class="container">
+        <div class="announcement-bar__content">
+          <p class="announcement-bar__message">
+            {{ section.settings.message }}
+          </p>
+          
+          {%- if section.settings.link != blank -%}
+            <a href="{{ section.settings.link }}" class="announcement-bar__link">
+              {{ section.settings.link_text | default: 'Saber mais' }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .announcement-bar {
+    background: var(--color-cta-600);
+    color: white;
+    position: relative;
+    z-index: 101;
+  }
+
+  .announcement-bar__wrapper {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .announcement-bar__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+
+  .announcement-bar__message {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .announcement-bar__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: white;
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: opacity var(--transition-fast);
+  }
+
+  .announcement-bar__link:hover {
+    opacity: 0.8;
+  }
+
+  .announcement-bar__link svg {
+    flex-shrink: 0;
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .announcement-bar__content {
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .announcement-bar__message {
+      font-size: var(--text-xs);
+    }
+
+    .announcement-bar__link {
+      font-size: var(--text-xs);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Mensagem",
+      "default": "🚚 Envio grátis para Portugal e Espanha em pedidos superiores a €50"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Texto do Link",
+      "default": "Saber mais"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

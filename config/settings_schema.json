@@ -1,0 +1,632 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Intimate Grooming Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Your Brand",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Brand Settings",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Nome da Marca",
+        "default": "Marca"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Color Scheme",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_base_900",
+        "label": "Base 900 (Ebony Black)",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_base_800",
+        "label": "Base 800 (Charcoal Gray)",
+        "default": "#2E2E2E"
+      },
+      {
+        "type": "color",
+        "id": "color_base_050",
+        "label": "Base 050 (Light Silver)",
+        "default": "#F3F3F3"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_700",
+        "label": "Accent 700 (Bronze Gold)",
+        "default": "#C1916A"
+      },
+      {
+        "type": "color",
+        "id": "color_cta_600",
+        "label": "CTA 600 (Teal Green)",
+        "default": "#009F91"
+      },
+      {
+        "type": "color",
+        "id": "color_warm_200",
+        "label": "Warm 200 (Warm Sand)",
+        "default": "#D8C8B0"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fontes"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "poppins_n6",
+        "label": "Fonte do Cabeçalho",
+        "info": "Selecionar fonte para títulos e cabeçalhos"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "poppins_n4",
+        "label": "Fonte do Corpo",
+        "info": "Selecionar fonte para texto do corpo"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Escala dos Cabeçalhos",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "min": 100,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "Escala do Corpo",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1000,
+        "max": 1600,
+        "step": 10,
+        "default": 1200,
+        "unit": "px",
+        "label": "Largura da Página"
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Espaçamento entre Seções",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      {
+        "type": "range",
+        "id": "buttons_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Raio dos Botões",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "buttons_border_thickness",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "label": "Espessura da Borda dos Botões",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "buttons_border_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Opacidade da Borda dos Botões",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "buttons_shadow_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Opacidade da Sombra dos Botões",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Product Cards",
+    "settings": [
+      {
+        "type": "range",
+        "id": "card_image_padding",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding da Imagem do Card",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "card_corner_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Raio do Card",
+        "default": 0
+      },
+      {
+        "type": "select",
+        "id": "card_text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Esquerda"
+          },
+          {
+            "value": "center",
+            "label": "Centro"
+          },
+          {
+            "value": "right",
+            "label": "Direita"
+          }
+        ],
+        "default": "left",
+        "label": "Alinhamento do Texto do Card"
+      },
+      {
+        "type": "range",
+        "id": "card_border_thickness",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "label": "Espessura da Borda do Card",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "card_border_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Opacidade da Borda do Card",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "card_shadow_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "Opacidade da Sombra do Card",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "32 x 32px .png recomendado"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "default": true,
+        "label": "Ativar busca preditiva",
+        "info": "Mostrar sugestões de busca em tempo real"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "default": false,
+        "label": "Mostrar fornecedor na busca"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_price",
+        "default": true,
+        "label": "Mostrar preço na busca"
+      }
+    ]
+  },
+  {
+    "name": "GDPR & Privacy",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "gdpr_enabled",
+        "default": true,
+        "label": "Ativar GDPR Cookie Consent",
+        "info": "Mostrar banner de consentimento de cookies"
+      },
+      {
+        "type": "text",
+        "id": "gdpr_privacy_policy_url",
+        "label": "URL da Política de Privacidade",
+        "default": "/pages/privacy-policy"
+      },
+      {
+        "type": "text",
+        "id": "gdpr_terms_url",
+        "label": "URL dos Termos e Condições",
+        "default": "/pages/terms-conditions"
+      }
+    ]
+  },
+  {
+    "name": "Analytics",
+    "settings": [
+      {
+        "type": "text",
+        "id": "google_tag_manager_id",
+        "label": "Google Tag Manager ID",
+        "info": "Ex: GTM-XXXXXXX"
+      },
+      {
+        "type": "text",
+        "id": "google_analytics_id",
+        "label": "Google Analytics ID",
+        "info": "Ex: GA-XXXXXXX"
+      }
+    ]
+  },
+  {
+    "name": "Payment Icons",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "default": true,
+        "label": "Mostrar ícones de pagamento"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_mbway",
+        "default": true,
+        "label": "Mostrar MB WAY"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_multibanco",
+        "default": true,
+        "label": "Mostrar Multibanco"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_paypal",
+        "default": true,
+        "label": "Mostrar PayPal"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_credit_cards",
+        "default": true,
+        "label": "Mostrar Cartões de Crédito"
+      }
+    ]
+  },
+  {
+    "name": "Contact Information",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Email de Contacto",
+        "default": "info@marca.com"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Telefone de Contacto",
+        "default": "+351 123 456 789"
+      },
+      {
+        "type": "textarea",
+        "id": "contact_address",
+        "label": "Endereço",
+        "default": "Rua Exemplo, 123\n1000-000 Lisboa, Portugal"
+      },
+      {
+        "type": "text",
+        "id": "contact_hours",
+        "label": "Horário de Atendimento",
+        "default": "Segunda a Sexta: 9h-18h"
+      }
+    ]
+  },
+  {
+    "name": "Trust & Security",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Badges de Confiança"
+      },
+      {
+        "type": "text",
+        "id": "trust_badge_1",
+        "label": "Badge 1",
+        "default": "2 anos de garantia"
+      },
+      {
+        "type": "text",
+        "id": "trust_badge_2",
+        "label": "Badge 2",
+        "default": "14 dias para devolver"
+      },
+      {
+        "type": "text",
+        "id": "trust_badge_3",
+        "label": "Badge 3",
+        "default": "Envio discreto"
+      },
+      {
+        "type": "text",
+        "id": "trust_badge_4",
+        "label": "Badge 4",
+        "default": "Pagamento seguro"
+      },
+      {
+        "type": "header",
+        "content": "Mensagens de Confiança"
+      },
+      {
+        "type": "text",
+        "id": "payment_guarantee_text",
+        "label": "Texto de Garantia de Pagamento",
+        "default": "Pagamento 100% seguro e encriptado"
+      },
+      {
+        "type": "text",
+        "id": "shipping_info_text",
+        "label": "Informação de Envio",
+        "default": "Envio discreto e rápido para Portugal e Espanha"
+      }
+    ]
+  },
+  {
+    "name": "Performance & SEO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Performance"
+      },
+      {
+        "type": "checkbox",
+        "id": "lazy_load_images",
+        "label": "Carregamento Lento de Imagens",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "preload_critical_css",
+        "label": "Pré-carregar CSS Crítico",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "SEO"
+      },
+      {
+        "type": "text",
+        "id": "meta_title",
+        "label": "Título Meta Padrão",
+        "default": "{{ shop.name }} - {{ page_title }}"
+      },
+      {
+        "type": "textarea",
+        "id": "meta_description",
+        "label": "Descrição Meta Padrão",
+        "default": "Descubra os melhores produtos para cuidado íntimo masculino. Qualidade, segurança e discrição garantidas."
+      },
+      {
+        "type": "image_picker",
+        "id": "og_image",
+        "label": "Imagem Open Graph Padrão"
+      },
+      {
+        "type": "header",
+        "content": "Dados Estruturados"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_structured_data",
+        "label": "Ativar Dados Estruturados",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Product Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Produtos"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_zoom",
+        "label": "Ativar Zoom nas Imagens",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_video_autoplay",
+        "label": "Autoplay nos Vídeos de Produto",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "min": 12,
+        "max": 48,
+        "step": 6,
+        "label": "Produtos por Página",
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "Carrinho"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_ajax",
+        "label": "Adicionar ao Carrinho via AJAX",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_drawer",
+        "label": "Usar Drawer do Carrinho",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "footer_newsletter",
+        "label": "Mostrar Newsletter no Footer",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "newsletter_title",
+        "label": "Título da Newsletter",
+        "default": "Mantém-te atualizado"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_description",
+        "label": "Descrição da Newsletter",
+        "default": "Recebe as últimas novidades e ofertas exclusivas."
+      },
+      {
+        "type": "text",
+        "id": "newsletter_placeholder",
+        "label": "Placeholder do Email",
+        "default": "O teu email"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_button_text",
+        "label": "Texto do Botão",
+        "default": "Subscrever"
+      }
+    ]
+  }
+]

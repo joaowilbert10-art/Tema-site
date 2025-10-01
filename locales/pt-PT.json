@@ -1,0 +1,350 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "search": {
+      "search": "Pesquisar",
+      "placeholder": "Pesquisar produtos...",
+      "submit": "Pesquisar"
+    },
+    "share": {
+      "success_message": "Link copiado para a área de transferência!"
+    },
+    "cookie_consent": {
+      "title": "Utilizamos cookies",
+      "description": "Utilizamos cookies para melhorar a sua experiência de navegação, personalizar conteúdo e anúncios, fornecer funcionalidades de redes sociais e analisar o nosso tráfego. Ao continuar a navegar, aceita a nossa utilização de cookies.",
+      "privacy_policy": "Política de Privacidade",
+      "terms": "Termos e Condições",
+      "and": "e",
+      "accept": "Aceitar",
+      "decline": "Recusar"
+    },
+    "breadcrumbs": {
+      "home": "Início"
+    },
+    "faq": {
+      "sample_question": "Como funciona a garantia?",
+      "sample_answer": "Oferecemos 2 anos de garantia em todos os nossos produtos."
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Saltar para o conteúdo",
+    "refresh_page": "Escolha uma opção para atualizar a página",
+    "link_messages": {
+      "new_window": "Abre numa nova janela"
+    },
+    "skip_to_content": "Saltar para o conteúdo principal",
+    "star_rating": "{{ rating }} de {{ max_rating }} estrelas"
+  },
+  "sections": {
+    "header": {
+      "navigation": "Navegação principal",
+      "menu": "Menu",
+      "cart_count": "{{ count }} item no carrinho"
+    },
+    "footer": {
+      "social_media": "Redes Sociais",
+      "newsletter_placeholder": "O seu endereço de email",
+      "newsletter_submit": "Subscrever",
+      "newsletter_success": "Obrigado pela sua subscrição!",
+      "payment_methods": "Métodos de Pagamento",
+      "secure_checkout": "Checkout Seguro",
+      "discrete_shipping": "Envio Discreto",
+      "fast_delivery": "Entrega Rápida",
+      "all_rights_reserved": "Todos os direitos reservados",
+      "privacy_policy": "Política de Privacidade",
+      "terms_conditions": "Termos e Condições",
+      "return_policy": "Política de Devolução"
+    },
+    "cart": {
+      "cart_error": "Erro ao adicionar ao carrinho",
+      "cart_quantity_error_html": "Só pode adicionar {{ quantity }} deste item ao carrinho"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Adicionar ao Carrinho",
+      "sold_out": "Esgotado",
+      "unavailable": "Indisponível",
+      "value_unavailable": "{{ option_value }} - Indisponível",
+      "media": {
+        "image_available": "Imagem {{ index }} disponível na galeria"
+      }
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "A Minha Conta"
+    },
+    "log_in": "Iniciar Sessão"
+  },
+  "templates": {
+    "cart": {
+      "cart": "Carrinho"
+    }
+  },
+  "localization": {
+    "language_label": "Idioma"
+  },
+  "recipient": {
+    "form": {
+      "expanded": "Formulário de destinatário expandido",
+      "collapsed": "Formulário de destinatário recolhido"
+    }
+  },
+  "gdpr": {
+    "title": "Utilizamos Cookies",
+    "description": "Utilizamos cookies para melhorar a sua experiência de navegação, personalizar conteúdo e anúncios, fornecer funcionalidades de redes sociais e analisar o nosso tráfego. Ao continuar a navegar, aceita a nossa utilização de cookies.",
+    "privacy_policy": "Política de Privacidade",
+    "terms": "Termos e Condições",
+    "accept": "Aceitar Todos",
+    "reject": "Rejeitar",
+    "settings": "Configurações",
+    "settings_title": "Configurações de Cookies",
+    "settings_description": "Pode escolher que tipos de cookies aceita. Os cookies necessários são sempre ativados para o funcionamento básico do site.",
+    "necessary_title": "Cookies Necessários",
+    "necessary_description": "Estes cookies são essenciais para o funcionamento do site e não podem ser desativados.",
+    "analytics_title": "Cookies de Analytics",
+    "analytics_description": "Estes cookies ajudam-nos a entender como os visitantes interagem com o site, fornecendo informações anónimas.",
+    "marketing_title": "Cookies de Marketing",
+    "marketing_description": "Estes cookies são utilizados para personalizar anúncios e medir a eficácia das campanhas publicitárias.",
+    "save_settings": "Guardar Configurações"
+  },
+  "hero": {
+    "headline": "O cuidado que começa abaixo da cintura",
+    "subheadline": "Seguro, potente e à prova d'água. A experiência de depilação íntima masculina que você sempre quis, sem complicações.",
+    "cta_primary": "Quero o meu agora",
+    "cta_secondary": "Ver demonstração",
+    "benefit_1": "2 anos de garantia",
+    "benefit_2": "14 dias para devolver",
+    "benefit_3": "Envio discreto"
+  },
+  "benefits": {
+    "title": "Por que escolher o nosso produto?",
+    "subtitle": "Tecnologia avançada e design pensado para o seu conforto e segurança",
+    "anti_cuts": {
+      "title": "Tecnologia Anti-Cortes",
+      "description": "Lâminas cerâmicas que cortam apenas os pelos, protegendo a sua pele de cortes e irritações"
+    },
+    "waterproof": {
+      "title": "100% À Prova d'Água",
+      "description": "Use no chuveiro com total segurança. Design selado que resiste à água e facilita a limpeza"
+    },
+    "battery": {
+      "title": "Bateria de 90 Minutos",
+      "description": "Autonomia suficiente para múltiplas utilizações. Carregamento rápido via USB-C"
+    }
+  },
+  "reviews": {
+    "title": "O que os nossos clientes dizem",
+    "subtitle": "Mais de 10.000 homens já confiam no nosso produto",
+    "average_rating": "{{ rating }} de 5 estrelas",
+    "total_reviews": "({{ count }} avaliações)"
+  },
+  "video": {
+    "title": "Veja a diferença na prática",
+    "subtitle": "Na prática, a diferença é brutal",
+    "description": "Descubra como o nosso produto revoluciona a sua rotina de cuidados pessoais. Simples, seguro e eficaz.",
+    "play_button": "Reproduzir vídeo",
+    "duration": "2:30",
+    "info": "Demonstração do produto"
+  },
+  "educational": {
+    "title": "Por que usar um aparador dedicado?",
+    "subtitle": "Entenda a diferença entre usar ferramentas genéricas e um produto específico para cuidados íntimos",
+    "comparison_title": "Errado vs Certo",
+    "wrong_title": "Usar aparador de barba/cabelo",
+    "right_title": "Usar aparador íntimo dedicado",
+    "hygiene": {
+      "title": "Higiene e Prevenção",
+      "description": "Produtos dedicados evitam contaminação cruzada e garantem higiene total"
+    },
+    "safety": {
+      "title": "Segurança Garantida",
+      "description": "Design específico reduz riscos de cortes e irritações na pele sensível"
+    },
+    "ergonomics": {
+      "title": "Ergonomia Perfeita",
+      "description": "Formato e tamanho otimizados para uso confortável e preciso"
+    }
+  },
+  "bundles": {
+    "title": "Escolha o seu kit perfeito",
+    "subtitle": "Pacotes completos com tudo que você precisa para começar",
+    "starter": {
+      "title": "Kit Starter",
+      "subtitle": "Perfeito para começar",
+      "price": "€49,90",
+      "price_note": "ou 3x de €16,63"
+    },
+    "pro": {
+      "title": "Kit Pro",
+      "subtitle": "O mais popular",
+      "price": "€69,90",
+      "price_note": "ou 3x de €23,30"
+    },
+    "ultimate": {
+      "title": "Kit Ultimate",
+      "subtitle": "Tudo incluído",
+      "price": "€99,90",
+      "price_note": "ou 3x de €33,30"
+    },
+    "cta": "Quero este kit",
+    "cta_note": "Entrega em 2-3 dias úteis",
+    "upsell": "+ Loção pós-depilação (€15)"
+  },
+  "trust": {
+    "title": "Zero risco, só resultados",
+    "subtitle": "A sua satisfação e segurança são a nossa prioridade",
+    "microcopy": "Mais de 10.000 homens já confiam no nosso produto",
+    "guarantee": {
+      "title": "2 Anos de Garantia",
+      "description": "Garantia total de 2 anos contra defeitos de fabrico"
+    },
+    "return": {
+      "title": "14 Dias para Devolver",
+      "description": "Devolução gratuita em 14 dias se não ficar satisfeito"
+    },
+    "shipping": {
+      "title": "Envio Discreto",
+      "description": "Embalagem neutra e entrega discreta em toda a UE"
+    }
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "subtitle": "Tire as suas dúvidas sobre o produto e o processo de compra",
+    "cta_text": "Ainda tem dúvidas? Nossa equipa está aqui para ajudar.",
+    "cta_button": "Falar com Suporte",
+    "questions": {
+      "sensitive_skin": {
+        "question": "O produto é seguro para pele sensível?",
+        "answer": "Sim, o nosso produto foi desenvolvido especificamente para ser seguro em pele sensível. As lâminas cerâmicas são mais suaves que as metálicas tradicionais e o design ergonômico reduz o risco de irritações."
+      },
+      "shower": {
+        "question": "Posso usar no chuveiro?",
+        "answer": "Sim! O produto é 100% à prova d'água (IPX7) e pode ser usado no chuveiro com total segurança. Isso facilita a limpeza e torna o processo mais conveniente."
+      },
+      "battery": {
+        "question": "Quanto tempo dura a bateria?",
+        "answer": "A bateria oferece até 90 minutos de uso contínuo, o que equivale a várias sessões de uso. O carregamento é feito via USB-C e demora aproximadamente 2 horas para carregar completamente."
+      },
+      "whole_body": {
+        "question": "Posso usar em todo o corpo?",
+        "answer": "Embora o produto seja especificamente otimizado para cuidados íntimos, pode ser usado em outras partes do corpo. Recomendamos sempre seguir as instruções do manual para melhores resultados."
+      },
+      "cleaning": {
+        "question": "Como faço a limpeza do produto?",
+        "answer": "A limpeza é simples: remova os pelos com a escova incluída, lave com água corrente e seque com um pano limpo. Para desinfecção, pode usar álcool isopropílico nas lâminas."
+      },
+      "discrete_shipping": {
+        "question": "O envio é discreto?",
+        "answer": "Sim, todos os nossos envios são feitos em embalagem neutra, sem qualquer indicação do conteúdo. O seu pedido chegará de forma completamente discreta."
+      },
+      "delivery": {
+        "question": "Qual é o prazo de entrega?",
+        "answer": "Para Portugal e Espanha, o prazo de entrega é de 2-3 dias úteis. Para outros países da UE, o prazo é de 3-5 dias úteis. O envio é gratuito para pedidos superiores a €50."
+      },
+      "return": {
+        "question": "Posso devolver se não ficar satisfeito?",
+        "answer": "Sim, oferecemos 14 dias para devolução sem perguntas. Se não ficar satisfeito com o produto, pode devolvê-lo e receberá o reembolso total."
+      }
+    }
+  },
+  "payment": {
+    "methods": {
+      "credit_card": "Cartões de Crédito",
+      "paypal": "PayPal",
+      "mbway": "MB WAY",
+      "multibanco": "Multibanco",
+      "sepa": "Transferência SEPA"
+    },
+    "security": "Checkout Seguro",
+    "discrete": "Envio Discreto",
+    "fast": "Entrega Rápida"
+  },
+  "badges": {
+    "guarantee": "2 anos de garantia",
+    "return": "14 dias para devolver",
+    "shipping": "Envio discreto",
+    "secure": "SSL Seguro",
+    "gdpr": "GDPR Compliant",
+    "fast_delivery": "Envio Rápido"
+  },
+  "buttons": {
+    "add_to_cart": "Adicionar ao Carrinho",
+    "buy_now": "Comprar Agora",
+    "learn_more": "Saber Mais",
+    "get_started": "Começar",
+    "contact_us": "Contactar",
+    "subscribe": "Subscrever",
+    "download": "Descarregar",
+    "view_all": "Ver Tudo",
+    "read_more": "Ler Mais",
+    "show_more": "Mostrar Mais",
+    "show_less": "Mostrar Menos"
+  },
+  "forms": {
+    "email": "Email",
+    "name": "Nome",
+    "phone": "Telefone",
+    "message": "Mensagem",
+    "required": "Obrigatório",
+    "optional": "Opcional",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "back": "Voltar",
+    "next": "Seguinte",
+    "previous": "Anterior",
+    "finish": "Concluir"
+  },
+  "validation": {
+    "required": "Este campo é obrigatório",
+    "email": "Por favor, insira um email válido",
+    "phone": "Por favor, insira um telefone válido",
+    "min_length": "Deve ter pelo menos {{ min }} caracteres",
+    "max_length": "Deve ter no máximo {{ max }} caracteres",
+    "password_match": "As palavras-passe não coincidem"
+  },
+  "messages": {
+    "success": "Sucesso!",
+    "error": "Erro!",
+    "warning": "Aviso!",
+    "info": "Informação",
+    "loading": "A carregar...",
+    "saved": "Guardado com sucesso",
+    "deleted": "Eliminado com sucesso",
+    "updated": "Atualizado com sucesso",
+    "created": "Criado com sucesso"
+  },
+  "time": {
+    "now": "Agora",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "tomorrow": "Amanhã",
+    "this_week": "Esta semana",
+    "last_week": "Semana passada",
+    "next_week": "Próxima semana",
+    "this_month": "Este mês",
+    "last_month": "Mês passado",
+    "next_month": "Próximo mês",
+    "this_year": "Este ano",
+    "last_year": "Ano passado",
+    "next_year": "Próximo ano"
+  },
+  "currency": {
+    "symbol": "€",
+    "code": "EUR",
+    "format": "{{ amount }} €"
+  },
+  "date": {
+    "format": "DD/MM/YYYY",
+    "time_format": "HH:mm",
+    "datetime_format": "DD/MM/YYYY HH:mm"
+  }
+}

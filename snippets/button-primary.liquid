@@ -1,0 +1,128 @@
+{% comment %}
+  Button Primary Snippet - Botão primário reutilizável
+  Parâmetros:
+  - text: texto do botão
+  - url: URL do link
+  - size: tamanho (sm, md, lg)
+  - icon: ícone opcional
+  - loading: estado de loading
+  - disabled: estado desabilitado
+  - class: classes CSS adicionais
+{% endcomment %}
+
+{% assign button_text = text | default: 'Botão' %}
+{% assign button_url = url | default: '#' %}
+{% assign button_size = size | default: 'md' %}
+{% assign button_loading = loading | default: false %}
+{% assign button_disabled = disabled | default: false %}
+{% assign button_class = class | default: '' %}
+
+{% assign size_classes = '' %}
+{% case button_size %}
+  {% when 'sm' %}
+    {% assign size_classes = 'btn-sm' %}
+  {% when 'lg' %}
+    {% assign size_classes = 'btn-lg' %}
+  {% else %}
+    {% assign size_classes = '' %}
+{% endcase %}
+
+{% assign button_classes = 'btn btn-primary ' | append: size_classes | append: ' ' | append: button_class %}
+
+{% if button_loading %}
+  {% assign button_classes = button_classes | append: ' loading' %}
+{% endif %}
+
+{% if button_disabled %}
+  {% assign button_classes = button_classes | append: ' disabled' %}
+{% endif %}
+
+<a 
+  href="{{ button_url }}" 
+  class="{{ button_classes }}"
+  {% if button_disabled %}aria-disabled="true" tabindex="-1"{% endif %}
+  {% if button_loading %}aria-label="Carregando..."{% endif %}
+>
+  {% if icon and icon != blank %}
+    <svg class="btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+      {% case icon %}
+        {% when 'arrow-right' %}
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'arrow-left' %}
+          <path d="M19 12H5M5 12L12 5M5 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'check' %}
+          <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'plus' %}
+          <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'cart' %}
+          <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 17.6 16.6 18 16 18H8C7.4 18 7 17.6 7 17V13M9 19.5C9.8 19.5 10.5 20.2 10.5 21S9.8 22.5 9 22.5 7.5 21.8 7.5 21 8.2 19.5 9 19.5ZM20 19.5C20.8 19.5 21.5 20.2 21.5 21S20.8 22.5 20 22.5 18.5 21.8 18.5 21 19.2 19.5 20 19.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'heart' %}
+          <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'star' %}
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'play' %}
+          <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'download' %}
+          <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% else %}
+          <!-- Ícone padrão -->
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      {% endcase %}
+    </svg>
+  {% endif %}
+  
+  <span class="btn__text">{{ button_text }}</span>
+  
+  {% if button_loading %}
+    <svg class="btn__loading" width="16" height="16" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+        <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  {% endif %}
+</a>
+
+<style>
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+
+  .btn__icon {
+    flex-shrink: 0;
+  }
+
+  .btn__text {
+    flex: 1;
+  }
+
+  .btn__loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .btn.loading .btn__text,
+  .btn.loading .btn__icon {
+    opacity: 0;
+  }
+
+  .btn.loading .btn__loading {
+    opacity: 1;
+  }
+
+  .btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+</style>

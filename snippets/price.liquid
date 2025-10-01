@@ -1,0 +1,186 @@
+{% comment %}
+  Price Snippet - Exibição de preços com comparativo
+  Parâmetros:
+  - price: preço atual
+  - compare_price: preço comparativo (riscado)
+  - currency: moeda (padrão: EUR)
+  - show_currency: mostrar símbolo da moeda
+  - size: tamanho (sm, md, lg, xl)
+  - class: classes CSS adicionais
+{% endcomment %}
+
+{% assign current_price = price | default: 0 %}
+{% assign compare_price = compare_price | default: 0 %}
+{% assign currency_code = currency | default: 'EUR' %}
+{% assign show_currency_symbol = show_currency | default: true %}
+{% assign price_size = size | default: 'md' %}
+{% assign price_class = class | default: '' %}
+
+{% assign currency_symbol = '€' %}
+{% case currency_code %}
+  {% when 'USD' %}
+    {% assign currency_symbol = '$' %}
+  {% when 'GBP' %}
+    {% assign currency_symbol = '£' %}
+  {% when 'BRL' %}
+    {% assign currency_symbol = 'R$' %}
+  {% else %}
+    {% assign currency_symbol = '€' %}
+{% endcase %}
+
+{% assign size_classes = '' %}
+{% case price_size %}
+  {% when 'sm' %}
+    {% assign size_classes = 'price--sm' %}
+  {% when 'lg' %}
+    {% assign size_classes = 'price--lg' %}
+  {% when 'xl' %}
+    {% assign size_classes = 'price--xl' %}
+  {% else %}
+    {% assign size_classes = '' %}
+{% endcase %}
+
+{% assign price_classes = 'price ' | append: size_classes | append: ' ' | append: price_class %}
+
+<div class="{{ price_classes }}">
+  {% if compare_price > 0 and compare_price > current_price %}
+    <div class="price__compare">
+      <span class="price__compare-amount">
+        {% if show_currency_symbol %}{{ currency_symbol }}{% endif %}{{ compare_price | money_without_currency }}
+      </span>
+    </div>
+  {% endif %}
+  
+  <div class="price__current">
+    <span class="price__amount">
+      {% if show_currency_symbol %}{{ currency_symbol }}{% endif %}{{ current_price | money_without_currency }}
+    </span>
+  </div>
+  
+  {% if compare_price > 0 and compare_price > current_price %}
+    {% assign discount_percentage = compare_price | minus: current_price | times: 100 | divided_by: compare_price %}
+    {% if discount_percentage > 0 %}
+      <div class="price__discount">
+        <span class="price__discount-badge">-{{ discount_percentage }}%</span>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+<style>
+  .price {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .price__compare {
+    display: flex;
+    align-items: center;
+  }
+
+  .price__compare-amount {
+    font-size: var(--text-sm);
+    color: var(--color-base-600);
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
+  .price__current {
+    display: flex;
+    align-items: center;
+  }
+
+  .price__amount {
+    font-weight: 700;
+    color: var(--color-base-900);
+  }
+
+  .price__discount {
+    display: flex;
+    align-items: center;
+  }
+
+  .price__discount-badge {
+    background: var(--color-cta-600);
+    color: white;
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Tamanhos */
+  .price--sm .price__amount {
+    font-size: var(--text-lg);
+  }
+
+  .price--sm .price__compare-amount {
+    font-size: var(--text-xs);
+  }
+
+  .price .price__amount {
+    font-size: var(--text-xl);
+  }
+
+  .price .price__compare-amount {
+    font-size: var(--text-sm);
+  }
+
+  .price--lg .price__amount {
+    font-size: var(--text-2xl);
+  }
+
+  .price--lg .price__compare-amount {
+    font-size: var(--text-base);
+  }
+
+  .price--xl .price__amount {
+    font-size: var(--text-3xl);
+  }
+
+  .price--xl .price__compare-amount {
+    font-size: var(--text-lg);
+  }
+
+  /* Layout horizontal */
+  .price--horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .price--horizontal .price__compare {
+    order: 1;
+  }
+
+  .price--horizontal .price__current {
+    order: 2;
+  }
+
+  .price--horizontal .price__discount {
+    order: 3;
+  }
+
+  /* Cores especiais */
+  .price--sale .price__amount {
+    color: var(--color-cta-600);
+  }
+
+  .price--highlight .price__amount {
+    color: var(--color-accent-700);
+  }
+
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .price--xl .price__amount {
+      font-size: var(--text-2xl);
+    }
+
+    .price--lg .price__amount {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

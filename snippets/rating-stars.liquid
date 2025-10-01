@@ -1,0 +1,234 @@
+{% comment %}
+  Rating Stars Snippet - Sistema de avaliação com estrelas
+  Parâmetros:
+  - rating: valor da avaliação (0-5)
+  - max_rating: valor máximo (padrão: 5)
+  - size: tamanho das estrelas (sm, md, lg)
+  - show_number: mostrar número da avaliação
+  - show_count: mostrar contagem de avaliações
+  - count: número de avaliações
+  - interactive: permitir interação (clique)
+  - class: classes CSS adicionais
+{% endcomment %}
+
+{% assign rating_value = rating | default: 0 %}
+{% assign max_rating = max_rating | default: 5 %}
+{% assign star_size = size | default: 'md' %}
+{% assign show_number = show_number | default: false %}
+{% assign show_count = show_count | default: false %}
+{% assign rating_count = count | default: 0 %}
+{% assign is_interactive = interactive | default: false %}
+{% assign rating_class = class | default: '' %}
+
+{% assign size_value = 20 %}
+{% case star_size %}
+  {% when 'sm' %}
+    {% assign size_value = 16 %}
+  {% when 'lg' %}
+    {% assign size_value = 24 %}
+  {% else %}
+    {% assign size_value = 20 %}
+{% endcase %}
+
+{% assign rating_classes = 'rating ' | append: rating_class %}
+{% if is_interactive %}
+  {% assign rating_classes = rating_classes | append: ' rating--interactive' %}
+{% endif %}
+
+<div class="{{ rating_classes }}" data-rating="{{ rating_value }}" data-max-rating="{{ max_rating }}">
+  <div class="rating__stars" role="img" aria-label="Avaliação: {{ rating_value }} de {{ max_rating }} estrelas">
+    {% for i in (1..max_rating) %}
+      {% assign star_class = 'rating__star' %}
+      {% if i <= rating_value %}
+        {% assign star_class = star_class | append: ' rating__star--filled' %}
+      {% elsif i == rating_value + 0.5 %}
+        {% assign star_class = star_class | append: ' rating__star--half' %}
+      {% endif %}
+      
+      {% if is_interactive %}
+        {% assign star_class = star_class | append: ' rating__star--interactive' %}
+      {% endif %}
+      
+      <button 
+        class="{{ star_class }}"
+        {% if is_interactive %}
+          data-rating-value="{{ i }}"
+          aria-label="Avaliar com {{ i }} estrelas"
+        {% else %}
+          tabindex="-1"
+        {% endif %}
+      >
+        <svg width="{{ size_value }}" height="{{ size_value }}" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="star-gradient-{{ forloop.index }}">
+              <stop offset="0%" stop-color="var(--color-accent-700)"/>
+              <stop offset="50%" stop-color="var(--color-accent-700)"/>
+              <stop offset="50%" stop-color="var(--color-base-050)"/>
+              <stop offset="100%" stop-color="var(--color-base-050)"/>
+            </linearGradient>
+          </defs>
+          <path 
+            d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+            stroke="var(--color-accent-700)" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    {% endfor %}
+  </div>
+  
+  {% if show_number or show_count %}
+    <div class="rating__info">
+      {% if show_number %}
+        <span class="rating__number">{{ rating_value }}</span>
+      {% endif %}
+      {% if show_count and rating_count > 0 %}
+        <span class="rating__count">({{ rating_count }} avaliações)</span>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .rating__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .rating__star {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rating__star:focus {
+    outline: 2px solid var(--color-cta-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .rating__star svg {
+    transition: all var(--transition-fast);
+  }
+
+  .rating__star--filled svg {
+    fill: var(--color-accent-700);
+  }
+
+  .rating__star--half svg {
+    fill: url(#star-gradient-{{ forloop.index }});
+  }
+
+  .rating__star:not(.rating__star--filled):not(.rating__star--half) svg {
+    fill: var(--color-base-050);
+  }
+
+  /* Estados interativos */
+  .rating--interactive .rating__star--interactive:hover svg {
+    fill: var(--color-accent-700);
+    transform: scale(1.1);
+  }
+
+  .rating--interactive .rating__star--interactive:hover ~ .rating__star svg {
+    fill: var(--color-base-050);
+  }
+
+  .rating__info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .rating__number {
+    font-weight: 600;
+    color: var(--color-base-900);
+  }
+
+  .rating__count {
+    font-size: var(--text-sm);
+    color: var(--color-base-700);
+  }
+
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .rating {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
+
+    .rating__info {
+      font-size: var(--text-sm);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Funcionalidade interativa das estrelas
+    const interactiveRatings = document.querySelectorAll('.rating--interactive');
+    
+    interactiveRatings.forEach(rating => {
+      const stars = rating.querySelectorAll('.rating__star--interactive');
+      
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          const value = parseInt(this.dataset.ratingValue);
+          const ratingContainer = this.closest('.rating');
+          
+          // Atualizar visualmente
+          stars.forEach((s, index) => {
+            s.classList.remove('rating__star--filled', 'rating__star--half');
+            if (index < value) {
+              s.classList.add('rating__star--filled');
+            }
+          });
+          
+          // Atualizar data attribute
+          ratingContainer.dataset.rating = value;
+          
+          // Disparar evento customizado
+          const event = new CustomEvent('rating:change', {
+            detail: { rating: value, maxRating: parseInt(ratingContainer.dataset.maxRating) }
+          });
+          ratingContainer.dispatchEvent(event);
+        });
+        
+        star.addEventListener('mouseenter', function() {
+          const value = parseInt(this.dataset.ratingValue);
+          
+          stars.forEach((s, index) => {
+            s.classList.remove('rating__star--filled', 'rating__star--half');
+            if (index < value) {
+              s.classList.add('rating__star--filled');
+            }
+          });
+        });
+      });
+      
+      rating.addEventListener('mouseleave', function() {
+        const currentRating = parseInt(this.dataset.rating);
+        
+        stars.forEach((s, index) => {
+          s.classList.remove('rating__star--filled', 'rating__star--half');
+          if (index < currentRating) {
+            s.classList.add('rating__star--filled');
+          }
+        });
+      });
+    });
+  });
+</script>

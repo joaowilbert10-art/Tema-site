@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <!-- Cart Icon -->
+  <symbol id="icon-cart" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+  </symbol>
+
+  <!-- Menu Icon -->
+  <symbol id="icon-menu" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+  </symbol>
+
+  <!-- Warranty Icon -->
+  <symbol id="icon-warranty" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002 12c0 2.757 1.125 5.227 2.938 7.072l.74.74A12.001 12.001 0 0012 22c2.757 0 5.227-1.125 7.072-2.938l.74-.74A12.001 12.001 0 0022 12c0-2.757-1.125-5.227-2.938-7.072z"/>
+  </symbol>
+
+  <!-- Return Icon -->
+  <symbol id="icon-return" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004 12m7-7H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V9m-6 6l-3-3m0 0l-3 3m3-3v7"/>
+  </symbol>
+
+  <!-- Shipping Icon -->
+  <symbol id="icon-shipping" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-3m-1 4a2 2 0 11-4 0 2 2 0 014 0zM17 17a2 2 0 11-4 0 2 2 0 014 0zM12 10v6m0 0l3-3m-3 3l-3-3"/>
+  </symbol>
+
+  <!-- Anti-cut Icon -->
+  <symbol id="icon-anti-cut" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+  </symbol>
+
+  <!-- Waterproof Icon -->
+  <symbol id="icon-waterproof" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.775l-.707-.707M6.343 17.657l-.707-.707M16.95 18.364l.707.707M6.343 6.343l-.707-.707M12 12a5 5 0 110-10 5 5 0 010 10z"/>
+  </symbol>
+
+  <!-- Battery Icon -->
+  <symbol id="icon-battery" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2v5a2 2 0 01-2 2h-5a2 2 0 01-2-2V9a2 2 0 012-2h5z"/>
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7v.01M17 17v.01"/>
+  </symbol>
+
+  <!-- Hygiene Icon -->
+  <symbol id="icon-hygiene" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+  </symbol>
+
+  <!-- Comfort Icon -->
+  <symbol id="icon-comfort" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+  </symbol>
+
+  <!-- Star Fill Icon -->
+  <symbol id="icon-star-fill" viewBox="0 0 20 20">
+    <path fill="currentColor" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.538 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.538-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.929 8.72c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"/>
+  </symbol>
+
+  <!-- Star Half Icon -->
+  <symbol id="icon-star-half" viewBox="0 0 20 20">
+    <path fill="currentColor" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.538 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.538-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.929 8.72c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292zM12 15.5V4.5a.5.5 0 00-1 0v11a.5.5 0 001 0z" clip-rule="evenodd" fill-rule="evenodd"/>
+  </symbol>
+
+  <!-- Star Empty Icon -->
+  <symbol id="icon-star-empty" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.538 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.538-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.929 8.72c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"/>
+  </symbol>
+
+  <!-- Check Icon -->
+  <symbol id="icon-check" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+  </symbol>
+
+  <!-- Plus Icon -->
+  <symbol id="icon-plus" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+  </symbol>
+
+  <!-- Chevron Left Icon -->
+  <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+  </symbol>
+
+  <!-- Chevron Right Icon -->
+  <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+  </symbol>
+
+  <!-- Facebook Icon -->
+  <symbol id="icon-facebook" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.271 0-4.192 2.159-4.192 4.148v3.852z"/>
+  </symbol>
+
+  <!-- Instagram Icon -->
+  <symbol id="icon-instagram" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.069-4.85.069-3.204 0-3.584-.012-4.849-.069-3.251-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.849 0-3.204.012-3.584.069-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.073 4.948.073 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+
+  <!-- YouTube Icon -->
+  <symbol id="icon-youtube" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l7 3.993-7 4.007z"/>
+  </symbol>
+
+  <!-- MB WAY Icon -->
+  <symbol id="icon-mbway" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.5 18h-2.5v-12h2.5c1.38 0 2.5 1.12 2.5 2.5v7c0 1.38-1.12 2.5-2.5 2.5zm10.5-12h-2.5v12h2.5v-12zm-7.5 0h-2.5v12h2.5v-12z"/>
+  </symbol>
+
+  <!-- Multibanco Icon -->
+  <symbol id="icon-multibanco" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.5 18h-2.5v-12h2.5c1.38 0 2.5 1.12 2.5 2.5v7c0 1.38-1.12 2.5-2.5 2.5zm10.5-12h-2.5v12h2.5v-12zm-7.5 0h-2.5v12h2.5v-12z"/>
+  </symbol>
+
+  <!-- Visa Icon -->
+  <symbol id="icon-visa" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M22.42 7.63c-.1-.2-.2-.3-.3-.4-.1-.1-.2-.2-.3-.2-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3 0h-3.5c-.2 0-.4.1-.5.2-.1.1-.2.2-.2.3l-1.5 6.5c0 .1 0 .2.1.3.1.1.2.1.3.1h2.5c.2 0 .4-.1.5-.2.1-.1.2-.2.2-.3l.3-1.5h2.5l.3 1.5c0 .1.1.2.2.3.1.1.3.1.5.1h2.5c.2 0 .4-.1.5-.2.1-.1.2-.2.2-.3l-1.5-6.5c0-.1 0-.2-.1-.3-.1-.1-.2-.1-.3-.1h-2.5c-.2 0-.4.1-.5.2-.1.1-.2.2-.2.3l-.3 1.5h-2.5l-.3-1.5c0-.1-.1-.2-.2-.3-.1-.1-.3-.1-.5-.1zm-4.5 4.5l-1-4.5h-2.5l-1 4.5h2.5zm-5-4.5l-1 4.5h-2.5l1-4.5h2.5zm-5 4.5l-1-4.5h-2.5l-1 4.5h2.5zm-5-4.5l-1 4.5h-2.5l1-4.5h2.5z"/>
+  </symbol>
+
+  <!-- Mastercard Icon -->
+  <symbol id="icon-mastercard" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-5-10c0-2.761 2.239-5 5-5s5 2.239 5 5-2.239 5-5 5-5-2.239-5-5zm5-3c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"/>
+  </symbol>
+
+  <!-- PayPal Icon -->
+  <symbol id="icon-paypal" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.543-.676c-.608-.685-1.46-1.03-2.55-1.03H9.95c-.524 0-.968.382-1.05.9L7.76 19.337h4.316c.524 0 .968-.382 1.05-.9l1.12-7.106h2.19c2.57 0 4.578-.543 5.69-1.81 1.01-1.15 1.304-2.42 1.012-4.287-.023-.143-.047-.288-.077-.437z"/>
+  </symbol>
+
+  <!-- Secure Payment Icon -->
+  <symbol id="icon-secure-payment" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+  </symbol>
+</svg>

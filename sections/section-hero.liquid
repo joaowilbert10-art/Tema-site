@@ -1,0 +1,573 @@
+{% comment %}
+  Hero Section - Seção principal da landing page
+  Inclui: Headline, subheadline, CTA, imagem do produto, badges, vídeo opcional
+{% endcomment %}
+
+<section class="hero" id="hero">
+  <div class="hero__container">
+    <div class="hero__content">
+      <!-- Conteúdo Principal -->
+      <div class="hero__text">
+        <div class="hero__badges">
+          {% if section.settings.badge_1_text != blank %}
+            <span class="badge badge-primary">{{ section.settings.badge_1_text }}</span>
+          {% endif %}
+          {% if section.settings.badge_2_text != blank %}
+            <span class="badge badge-secondary">{{ section.settings.badge_2_text }}</span>
+          {% endif %}
+          {% if section.settings.badge_3_text != blank %}
+            <span class="badge badge-info">{{ section.settings.badge_3_text }}</span>
+          {% endif %}
+        </div>
+
+        <h1 class="hero__headline">
+          {{ section.settings.headline | default: 'O cuidado que começa abaixo da cintura' }}
+        </h1>
+
+        <p class="hero__subheadline">
+          {{ section.settings.subheadline | default: 'Seguro, potente e à prova d\'água. A experiência de depilação íntima masculina que você sempre quis, sem complicações.' }}
+        </p>
+
+        <div class="hero__cta">
+          <a href="{{ section.settings.cta_url | default: '#products' }}" class="btn btn-primary btn-lg hero__cta-primary">
+            {{ section.settings.cta_text | default: 'Quero o meu agora' }}
+          </a>
+          {% if section.settings.cta_secondary_text != blank %}
+            <a href="{{ section.settings.cta_secondary_url }}" class="btn btn-outline btn-lg hero__cta-secondary">
+              {{ section.settings.cta_secondary_text }}
+            </a>
+          {% endif %}
+        </div>
+
+        <!-- Benefícios Rápidos -->
+        <div class="hero__benefits">
+          <div class="hero__benefit">
+            <svg class="hero__benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ section.settings.benefit_1 | default: '2 anos de garantia' }}</span>
+          </div>
+          <div class="hero__benefit">
+            <svg class="hero__benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M20 7L9 18L4 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ section.settings.benefit_2 | default: '14 dias para devolver' }}</span>
+          </div>
+          <div class="hero__benefit">
+            <svg class="hero__benefit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ section.settings.benefit_3 | default: 'Envio discreto' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mídia -->
+      <div class="hero__media">
+        {% if section.settings.video_url != blank %}
+          <div class="hero__video">
+            <video 
+              class="hero__video-element"
+              {% if section.settings.video_poster != blank %}poster="{{ section.settings.video_poster | image_url: width: 800 }}"{% endif %}
+              {% if section.settings.video_autoplay %}autoplay muted loop{% endif %}
+              playsinline
+            >
+              <source src="{{ section.settings.video_url }}" type="video/mp4">
+              Seu navegador não suporta vídeos HTML5.
+            </video>
+            {% if section.settings.video_play_button %}
+              <button class="hero__video-play" aria-label="Reproduzir vídeo">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="30" fill="rgba(0, 0, 0, 0.7)"/>
+                  <path d="M25 20L40 30L25 40V20Z" fill="white"/>
+                </svg>
+              </button>
+            {% endif %}
+          </div>
+        {% else %}
+          <div class="hero__image">
+            {% if section.settings.image != blank %}
+              <img 
+                src="{{ section.settings.image | image_url: width: 600 }}"
+                alt="{{ section.settings.image.alt | default: section.settings.headline }}"
+                class="hero__image-element"
+                width="600"
+                height="600"
+                loading="eager"
+              >
+            {% else %}
+              <!-- Placeholder do produto -->
+              <div class="hero__image-placeholder">
+                <svg width="400" height="400" viewBox="0 0 400 400" fill="none">
+                  <rect width="400" height="400" fill="var(--color-base-050)"/>
+                  <rect x="50" y="50" width="300" height="300" rx="20" fill="white" stroke="var(--color-base-800)" stroke-width="2"/>
+                  <circle cx="200" cy="150" r="40" fill="var(--color-cta-600)"/>
+                  <rect x="120" y="220" width="160" height="80" rx="10" fill="var(--color-accent-700)"/>
+                  <text x="200" y="360" text-anchor="middle" fill="var(--color-base-800)" font-size="16" font-weight="600">Produto</text>
+                </svg>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <!-- Badges da Imagem -->
+        <div class="hero__image-badges">
+          {% if section.settings.image_badge_1_text != blank %}
+            <div class="hero__image-badge hero__image-badge--1">
+              <span class="hero__image-badge-text">{{ section.settings.image_badge_1_text }}</span>
+            </div>
+          {% endif %}
+          {% if section.settings.image_badge_2_text != blank %}
+            <div class="hero__image-badge hero__image-badge--2">
+              <span class="hero__image-badge-text">{{ section.settings.image_badge_2_text }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Pattern -->
+  <div class="hero__background">
+    <div class="hero__pattern"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-base-050) 0%, var(--color-warm-200) 100%);
+    overflow: hidden;
+  }
+
+  .hero__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4xl);
+    align-items: center;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .hero__badges {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .hero__headline {
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-base-900);
+    margin: 0;
+  }
+
+  .hero__subheadline {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--color-base-800);
+    margin: 0;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .hero__cta-primary {
+    background: linear-gradient(135deg, var(--color-cta-600), var(--color-cta-700));
+    border: none;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero__cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .hero__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .hero__benefit {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-base-800);
+    font-weight: 500;
+  }
+
+  .hero__benefit-icon {
+    color: var(--color-cta-600);
+    flex-shrink: 0;
+  }
+
+  .hero__media {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__video,
+  .hero__image {
+    position: relative;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .hero__video-element,
+  .hero__image-element {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero__video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+  }
+
+  .hero__video-play:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .hero__image-placeholder {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .hero__image-badges {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
+  .hero__image-badge {
+    position: absolute;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .hero__image-badge--1 {
+    top: 20%;
+    right: -10%;
+    animation-delay: 0s;
+  }
+
+  .hero__image-badge--2 {
+    bottom: 20%;
+    left: -10%;
+    animation-delay: 1.5s;
+  }
+
+  .hero__image-badge-text {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-base-900);
+  }
+
+  .hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .hero__pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(0, 159, 145, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(193, 145, 106, 0.1) 0%, transparent 50%);
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .hero__content {
+      gap: var(--spacing-3xl);
+    }
+
+    .hero__headline {
+      font-size: var(--text-4xl);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .hero__content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2xl);
+      text-align: center;
+    }
+
+    .hero__headline {
+      font-size: var(--text-3xl);
+    }
+
+    .hero__subheadline {
+      font-size: var(--text-lg);
+    }
+
+    .hero__cta {
+      justify-content: center;
+    }
+
+    .hero__benefits {
+      align-items: center;
+    }
+
+    .hero__image-badge--1 {
+      right: 5%;
+    }
+
+    .hero__image-badge--2 {
+      left: 5%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__headline {
+      font-size: var(--text-2xl);
+    }
+
+    .hero__cta {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero__cta-primary,
+    .hero__cta-secondary {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Controle do vídeo
+    const videoPlayBtn = document.querySelector('.hero__video-play');
+    const video = document.querySelector('.hero__video-element');
+    
+    if (videoPlayBtn && video) {
+      videoPlayBtn.addEventListener('click', function() {
+        if (video.paused) {
+          video.play();
+          videoPlayBtn.style.display = 'none';
+        }
+      });
+
+      video.addEventListener('click', function() {
+        if (!video.paused) {
+          video.pause();
+          videoPlayBtn.style.display = 'block';
+        }
+      });
+    }
+
+    // Animação de entrada
+    const heroElements = document.querySelectorAll('.hero__text > *');
+    heroElements.forEach((element, index) => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px)';
+      
+      setTimeout(() => {
+        element.style.transition = 'all 0.6s ease-out';
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo Principal"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título Principal",
+      "default": "O cuidado que começa abaixo da cintura"
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subtítulo",
+      "default": "Seguro, potente e à prova d'água. A experiência de depilação íntima masculina que você sempre quis, sem complicações."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão Principal",
+      "default": "Quero o meu agora"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão Principal"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_text",
+      "label": "Texto do Botão Secundário"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "URL do Botão Secundário"
+    },
+    {
+      "type": "header",
+      "content": "Badges"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Badge 1",
+      "default": "2 anos de garantia"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Badge 2",
+      "default": "14 dias para devolver"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "Badge 3",
+      "default": "Envio discreto"
+    },
+    {
+      "type": "header",
+      "content": "Benefícios"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefício 1",
+      "default": "2 anos de garantia"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefício 2",
+      "default": "14 dias para devolver"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefício 3",
+      "default": "Envio discreto"
+    },
+    {
+      "type": "header",
+      "content": "Mídia"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem do Produto"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "URL do Vídeo (MP4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Imagem do Poster do Vídeo"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Reproduzir Vídeo Automaticamente",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_play_button",
+      "label": "Mostrar Botão de Play",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Badges da Imagem"
+    },
+    {
+      "type": "text",
+      "id": "image_badge_1_text",
+      "label": "Badge da Imagem 1"
+    },
+    {
+      "type": "text",
+      "id": "image_badge_2_text",
+      "label": "Badge da Imagem 2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}

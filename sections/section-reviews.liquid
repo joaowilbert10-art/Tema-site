@@ -1,0 +1,669 @@
+{% comment %}
+  Reviews Section - Seção de depoimentos e prova social
+  Inclui: Carrossel acessível, reviews com rating, UGC opcional
+{% endcomment %}
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="reviews__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="reviews__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+      
+      <!-- Rating Médio -->
+      {% if section.settings.show_average_rating %}
+        <div class="reviews__average">
+          <div class="reviews__rating">
+            {% assign rating = section.settings.average_rating | default: 4.8 %}
+            {% for i in (1..5) %}
+              {% if i <= rating %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-accent-700)">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+              {% elsif i == rating + 0.5 %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-accent-700)">
+                  <defs>
+                    <linearGradient id="half-star">
+                      <stop offset="50%" stop-color="var(--color-accent-700)"/>
+                      <stop offset="50%" stop-color="transparent"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#half-star)"/>
+                </svg>
+              {% else %}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-base-050)">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <span class="reviews__rating-text">{{ rating }} de 5 estrelas</span>
+          <span class="reviews__count">({{ section.settings.total_reviews | default: '1,247' }} avaliações)</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Carrossel de Reviews -->
+    <div class="reviews__carousel" data-carousel>
+      <div class="reviews__container" data-carousel-container>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'review' %}
+              <div class="reviews__item" data-carousel-item {{ block.shopify_attributes }}>
+                <div class="reviews__card">
+                  <!-- Rating -->
+                  <div class="reviews__stars">
+                    {% assign review_rating = block.settings.rating | default: 5 %}
+                    {% for i in (1..5) %}
+                      {% if i <= review_rating %}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent-700)">
+                          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                      {% else %}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-base-050)">
+                          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  <!-- Comentário -->
+                  <blockquote class="reviews__text">
+                    "{{ block.settings.review_text }}"
+                  </blockquote>
+
+                  <!-- Autor -->
+                  <div class="reviews__author">
+                    {% if block.settings.author_image != blank %}
+                      <img 
+                        src="{{ block.settings.author_image | image_url: width: 60 }}"
+                        alt="{{ block.settings.author_name }}"
+                        class="reviews__author-image"
+                        width="60"
+                        height="60"
+                        loading="lazy"
+                      >
+                    {% else %}
+                      <div class="reviews__author-avatar">
+                        {{ block.settings.author_name | slice: 0 | upcase }}
+                      </div>
+                    {% endif %}
+                    <div class="reviews__author-info">
+                      <div class="reviews__author-name">{{ block.settings.author_name }}</div>
+                      {% if block.settings.author_location != blank %}
+                        <div class="reviews__author-location">{{ block.settings.author_location }}</div>
+                      {% endif %}
+                      {% if block.settings.verified %}
+                        <div class="reviews__verified">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="var(--color-cta-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          Compra verificada
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <!-- Data -->
+                  {% if block.settings.review_date != blank %}
+                    <div class="reviews__date">{{ block.settings.review_date }}</div>
+                  {% endif %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      <!-- Controles do Carrossel -->
+      <div class="reviews__controls">
+        <button 
+          class="reviews__prev" 
+          data-carousel-prev
+          aria-label="Review anterior"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button 
+          class="reviews__next" 
+          data-carousel-next
+          aria-label="Próximo review"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Indicadores -->
+      <div class="reviews__indicators">
+        {% for block in section.blocks %}
+          {% if block.type == 'review' %}
+            <button 
+              class="reviews__indicator {% if forloop.first %}active{% endif %}"
+              data-carousel-indicator
+              aria-label="Ir para review {{ forloop.index }}"
+            ></button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    {% if section.settings.cta_text != blank %}
+      <div class="reviews__cta">
+        <a href="{{ section.settings.cta_url }}" class="btn btn-primary btn-lg">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .reviews {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(135deg, var(--color-base-050) 0%, var(--color-warm-200) 100%);
+  }
+
+  .reviews__header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .reviews__title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-base-900);
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .reviews__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-base-800);
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+
+  .reviews__average {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .reviews__rating {
+    display: flex;
+    gap: 2px;
+  }
+
+  .reviews__rating-text {
+    font-weight: 600;
+    color: var(--color-base-900);
+  }
+
+  .reviews__count {
+    color: var(--color-base-800);
+    font-size: var(--text-sm);
+  }
+
+  .reviews__carousel {
+    position: relative;
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .reviews__container {
+    display: flex;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+  }
+
+  .reviews__item {
+    flex: 0 0 100%;
+    padding: 0 var(--spacing-sm);
+  }
+
+  .reviews__card {
+    background: white;
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: transform var(--transition-normal);
+  }
+
+  .reviews__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .reviews__stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .reviews__text {
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    color: var(--color-base-900);
+    font-style: italic;
+    margin: 0;
+    flex: 1;
+  }
+
+  .reviews__author {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .reviews__author-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .reviews__author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--color-cta-600);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: var(--text-lg);
+  }
+
+  .reviews__author-info {
+    flex: 1;
+  }
+
+  .reviews__author-name {
+    font-weight: 600;
+    color: var(--color-base-900);
+    margin-bottom: 2px;
+  }
+
+  .reviews__author-location {
+    font-size: var(--text-sm);
+    color: var(--color-base-800);
+    margin-bottom: 4px;
+  }
+
+  .reviews__verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    color: var(--color-cta-600);
+    font-weight: 500;
+  }
+
+  .reviews__date {
+    font-size: var(--text-sm);
+    color: var(--color-base-800);
+    text-align: right;
+  }
+
+  .reviews__controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .reviews__prev,
+  .reviews__next {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--color-base-050);
+    color: var(--color-base-800);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    pointer-events: all;
+    box-shadow: var(--shadow-md);
+  }
+
+  .reviews__prev:hover,
+  .reviews__next:hover {
+    background: var(--color-cta-600);
+    color: white;
+    border-color: var(--color-cta-600);
+    transform: scale(1.1);
+  }
+
+  .reviews__prev:disabled,
+  .reviews__next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .reviews__prev {
+    left: -24px;
+  }
+
+  .reviews__next {
+    right: -24px;
+  }
+
+  .reviews__indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xl);
+  }
+
+  .reviews__indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-base-050);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .reviews__indicator.active {
+    background: var(--color-cta-600);
+    transform: scale(1.2);
+  }
+
+  .reviews__indicator:hover {
+    background: var(--color-cta-600);
+  }
+
+  .reviews__cta {
+    text-align: center;
+  }
+
+  /* Responsividade */
+  @media (max-width: 1024px) {
+    .reviews__prev {
+      left: -12px;
+    }
+
+    .reviews__next {
+      right: -12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .reviews {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .reviews__title {
+      font-size: var(--text-3xl);
+    }
+
+    .reviews__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .reviews__card {
+      padding: var(--spacing-xl);
+    }
+
+    .reviews__text {
+      font-size: var(--text-base);
+    }
+
+    .reviews__controls {
+      display: none;
+    }
+
+    .reviews__item {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .reviews__card {
+      padding: var(--spacing-lg);
+    }
+
+    .reviews__author {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-sm);
+    }
+
+    .reviews__author-info {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('[data-carousel]');
+    if (!carousel) return;
+
+    const container = carousel.querySelector('[data-carousel-container]');
+    const items = carousel.querySelectorAll('[data-carousel-item]');
+    const prevBtn = carousel.querySelector('[data-carousel-prev]');
+    const nextBtn = carousel.querySelector('[data-carousel-next]');
+    const indicators = carousel.querySelectorAll('[data-carousel-indicator]');
+    
+    let currentIndex = 0;
+    const totalItems = items.length;
+    
+    if (totalItems === 0) return;
+    
+    const updateCarousel = () => {
+      const translateX = -currentIndex * 100;
+      container.style.transform = `translateX(${translateX}%)`;
+      
+      // Atualizar indicadores
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentIndex);
+      });
+      
+      // Atualizar botões
+      if (prevBtn) prevBtn.disabled = currentIndex === 0;
+      if (nextBtn) nextBtn.disabled = currentIndex === totalItems - 1;
+    };
+    
+    // Event listeners
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        if (currentIndex < totalItems - 1) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+    }
+    
+    // Indicadores
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+    
+    // Auto-play
+    const autoPlay = carousel.dataset.autoplay === 'true';
+    if (autoPlay && totalItems > 1) {
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
+      }, 5000);
+    }
+    
+    // Inicializar
+    updateCarousel();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Reviews Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título da Seção",
+      "default": "O que os nossos clientes dizem"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo da Seção",
+      "default": "Mais de 10.000 homens já confiam no nosso produto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_average_rating",
+      "label": "Mostrar Rating Médio",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "average_rating",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "label": "Rating Médio",
+      "default": 4.8
+    },
+    {
+      "type": "text",
+      "id": "total_reviews",
+      "label": "Total de Reviews",
+      "default": "1,247"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Ver todos os reviews"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Texto do Review",
+          "default": "Produto excelente! Muito fácil de usar e resultado perfeito. Recomendo!"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Nome do Autor",
+          "default": "João Silva"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Foto do Autor"
+        },
+        {
+          "type": "text",
+          "id": "author_location",
+          "label": "Localização do Autor",
+          "default": "Lisboa, Portugal"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Compra Verificada",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "review_date",
+          "label": "Data do Review",
+          "default": "Há 2 semanas"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Section",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Produto excelente! Muito fácil de usar e resultado perfeito. Recomendo!",
+            "author_name": "João Silva",
+            "author_location": "Lisboa, Portugal",
+            "verified": true,
+            "review_date": "Há 2 semanas"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Finalmente um produto que funciona! Seguro, eficaz e discreto. Vale cada cêntimo.",
+            "author_name": "Miguel Santos",
+            "author_location": "Porto, Portugal",
+            "verified": true,
+            "review_date": "Há 1 mês"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "review_text": "Muito bom produto. A bateria dura bastante e o resultado é satisfatório.",
+            "author_name": "Carlos Oliveira",
+            "author_location": "Madrid, Espanha",
+            "verified": true,
+            "review_date": "Há 3 semanas"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

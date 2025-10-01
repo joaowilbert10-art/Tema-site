@@ -1,0 +1,151 @@
+{% comment %}
+  Badge Snippet - Badge reutilizável
+  Parâmetros:
+  - text: texto do badge
+  - type: tipo (primary, secondary, success, warning, info)
+  - size: tamanho (sm, md, lg)
+  - icon: ícone opcional
+  - class: classes CSS adicionais
+{% endcomment %}
+
+{% assign badge_text = text | default: 'Badge' %}
+{% assign badge_type = type | default: 'primary' %}
+{% assign badge_size = size | default: 'md' %}
+{% assign badge_class = class | default: '' %}
+
+{% assign type_classes = '' %}
+{% case badge_type %}
+  {% when 'secondary' %}
+    {% assign type_classes = 'badge-secondary' %}
+  {% when 'success' %}
+    {% assign type_classes = 'badge-success' %}
+  {% when 'warning' %}
+    {% assign type_classes = 'badge-warning' %}
+  {% when 'info' %}
+    {% assign type_classes = 'badge-info' %}
+  {% else %}
+    {% assign type_classes = 'badge-primary' %}
+{% endcase %}
+
+{% assign size_classes = '' %}
+{% case badge_size %}
+  {% when 'sm' %}
+    {% assign size_classes = 'badge-sm' %}
+  {% when 'lg' %}
+    {% assign size_classes = 'badge-lg' %}
+  {% else %}
+    {% assign size_classes = '' %}
+{% endcase %}
+
+{% assign badge_classes = 'badge ' | append: type_classes | append: ' ' | append: size_classes | append: ' ' | append: badge_class %}
+
+<span class="{{ badge_classes }}">
+  {% if icon and icon != blank %}
+    <svg class="badge__icon" width="12" height="12" viewBox="0 0 24 24" fill="none">
+      {% case icon %}
+        {% when 'check' %}
+          <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'star' %}
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'heart' %}
+          <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'shield' %}
+          <path d="M12 22S8 18 8 12V5L12 3L16 5V12C16 18 12 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'truck' %}
+          <path d="M1 3H15L19 7V17H1V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 17H21C21.6 17 22 17.4 22 18S21.6 19 21 19H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="5" cy="19" r="2" stroke="currentColor" stroke-width="2"/>
+          <circle cx="19" cy="19" r="2" stroke="currentColor" stroke-width="2"/>
+        {% when 'gift' %}
+          <path d="M20 12V22H4V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 7H2V12H22V7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 22V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 7H7.5C6.83696 7 6.20107 6.73661 5.73223 6.26777C5.26339 5.79893 5 5.16304 5 4.5C5 3.83696 5.26339 3.20107 5.73223 2.73223C6.20107 2.26339 6.83696 2 7.5 2C9.5 2 12 7 12 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 7H16.5C17.163 7 17.7989 6.73661 18.2678 6.26777C18.7366 5.79893 19 5.16304 19 4.5C19 3.83696 18.7366 3.20107 18.2678 2.73223C17.7989 2.26339 17.163 2 16.5 2C14.5 2 12 7 12 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'clock' %}
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% when 'users' %}
+          <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M23 21V19C23 18.1645 22.7155 17.3541 22.2094 16.6977C21.7033 16.0413 20.9999 15.5754 20.2 15.3663" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        {% else %}
+          <!-- Ícone padrão -->
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+      {% endcase %}
+    </svg>
+  {% endif %}
+  
+  <span class="badge__text">{{ badge_text }}</span>
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-weight: 600;
+    line-height: 1;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-fast);
+  }
+
+  .badge__icon {
+    flex-shrink: 0;
+  }
+
+  .badge__text {
+    flex: 1;
+  }
+
+  /* Tamanhos */
+  .badge-sm {
+    padding: 2px var(--spacing-xs);
+    font-size: var(--text-xs);
+  }
+
+  .badge {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--text-xs);
+  }
+
+  .badge-lg {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--text-sm);
+  }
+
+  /* Tipos */
+  .badge-primary {
+    background-color: var(--color-cta-600);
+    color: white;
+  }
+
+  .badge-secondary {
+    background-color: var(--color-accent-700);
+    color: white;
+  }
+
+  .badge-success {
+    background-color: #10B981;
+    color: white;
+  }
+
+  .badge-warning {
+    background-color: #F59E0B;
+    color: white;
+  }
+
+  .badge-info {
+    background-color: var(--color-cta-100);
+    color: var(--color-cta-700);
+  }
+
+  /* Estados hover */
+  .badge:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+</style>
